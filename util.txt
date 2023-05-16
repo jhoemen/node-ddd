@@ -1,0 +1,7 @@
+DOMINIO
+loja
+
+ENTIDADES
+# produto
+# cliente
+# pedido
