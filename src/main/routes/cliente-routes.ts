@@ -1,13 +1,10 @@
 import express from 'express'
 
 import { adaptRoute } from '../adapters/express-router-adapter'
-import { loginClienteControllerFactory } from '../factories/loginClienteControllerFactory'
-
+import { criarClienteControllerFactory } from '../factories/criarClienteControllerFactory'
 
 const clienteRouter = express.Router()
 
-clienteRouter.post('/cliente', async function (req, res) {
-    res.sendStatus(200)
-})
+clienteRouter.post('/cliente', adaptRoute(criarClienteControllerFactory()))
 
 export { clienteRouter }
