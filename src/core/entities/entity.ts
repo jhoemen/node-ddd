@@ -1,15 +1,32 @@
+import { v4 as uuid } from 'uuid'
 import { UniqueEntityID } from './unique-entity-id'
 
-export class Entity<Props> {
-  private _id: UniqueEntityID
-  protected props: Props
+export abstract class Entity<T> {
+  protected readonly _id: UniqueEntityID
+  public readonly props: T
 
   get id() {
     return this._id
   }
 
-  protected constructor(props: Props, id?: UniqueEntityID) {
+  constructor(props: T, id?: UniqueEntityID) {
+    this._id = id || new UniqueEntityID()
     this.props = props
-    this._id = id ?? new UniqueEntityID()
+  }
+
+  public equals(object?: Entity<T>): boolean {
+    if (object === null || object === undefined) {
+      return false
+    }
+
+    if (this === object) {
+      return true
+    }
+
+    if (!(object instanceof Entity)) {
+      return false
+    }
+
+    return this._id === object._id
   }
 }
