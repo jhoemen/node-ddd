@@ -31,11 +31,10 @@ export class LoginCliente {
     }
     
     const cliente = await this.clientesRepository.findByEmail(email)
-
+    
     const encrypter = new Encrypter()
-
     const isValid = cliente && await encrypter.compare(password, cliente.password)
-
+    
     if (isValid) {
       const tokenGenerator = new TokenGenerator(env.tokenSecret)
       const accessToken = await tokenGenerator.generate(cliente?.id)
