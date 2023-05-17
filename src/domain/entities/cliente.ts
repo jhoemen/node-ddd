@@ -1,13 +1,11 @@
 import { Entity } from "../../core/entities/entity"
 import { UniqueEntityID } from "../../core/entities/unique-entity-id"
 
-
 export interface ClienteProps {
     nome: string
     email: string
     cpf: string
     password: string
-    endereco: string
     createdAt?: Date
     updatedAt?: Date
   }
@@ -27,10 +25,6 @@ export class Cliente extends Entity<ClienteProps> {
 
     get password() {
         return this.props.password
-    }
-
-    get endereco() {
-        return this.props.endereco
     }
 
     get createdAt() {
@@ -62,11 +56,6 @@ export class Cliente extends Entity<ClienteProps> {
 
     set password(password: string) {
         this.props.password = password
-        this.touch()
-    }
-
-    set endereco(endereco: string) {
-        this.props.endereco = endereco
         this.touch()
     }
 
