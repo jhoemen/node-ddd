@@ -6,6 +6,6 @@ import { loginClienteControllerFactory } from '../factories/loginClienteControll
 
 const loginRouter = express.Router()
 
-loginRouter.post('/login', adaptRoute(loginClienteControllerFactory()))
+// loginRouter.post('/login', adaptRoute(loginClienteControllerFactory()))
 
 export { loginRouter }
