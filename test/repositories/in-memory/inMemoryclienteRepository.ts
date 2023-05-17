@@ -1,24 +1,8 @@
-import { ClientesRepository } from "../../../src/application/repositories/clientesRepository";
-import { Cliente } from "../../../src/domain/entities/cliente";
-const bcrypt = require('bcrypt')
+import { ClientesRepository } from "../../../src/application/repositories/clientesRepository"
+import { Cliente } from "../../../src/domain/entities/cliente"
 
 export class InMemoryClienteRepository implements ClientesRepository {    
     public items: Cliente[] = []
-
-    constructor(){
-        let cliente = Cliente.create({
-            nome: 'jonathan da silva pereira',
-            cpf: '038.905.131-40',
-            email: 'jhoemen@gmail.com',
-            endereco: 'rua da escola, bairro dom aquino',
-            password: '03890513140'
-        })
-
-        const salt = bcrypt.genSaltSync(10);
-        cliente.password = bcrypt.hashSync(cliente.password, salt);
-
-        this.items.push(cliente)
-    }
 
     async findByCpf(cpf: string): Promise<Cliente | null> {
         const cliente = this.items.find((cliente) => cliente.cpf === cpf)
@@ -31,8 +15,7 @@ export class InMemoryClienteRepository implements ClientesRepository {
     }
 
     async findByEmail(email: string): Promise<Cliente | null> {
-        
-
+        console.log('findByEmail-', this.items)
         const cliente = this.items.find((cliente) => cliente.email === email)
 
         if(!cliente) {
