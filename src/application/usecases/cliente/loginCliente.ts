@@ -2,10 +2,9 @@ import { Cliente } from '../../../domain/entities/cliente'
 import { ClientesRepository } from '../../repositories/clientesRepository'
 import { MissingParamError, InvalidParamError } from '../../../utils/errors'
 import { env } from '../../../main/config/env'
-
-const EmailValidator = require('../../../utils/helpers/email-validator')
-const Encrypter = require('../../../utils/helpers/encrypter')
-const TokenGenerator = require('../../../utils/helpers/token-generator')
+import { EmailValidator } from '../../../utils/helpers/email-validator'
+import { TokenGenerator } from '../../../utils/helpers/token-generator'
+import { Encrypter } from '../../../utils/helpers/encrypter'
 
 interface LoginClienteUseCaseRequest {
   email: string
@@ -41,6 +40,7 @@ export class LoginCliente {
 
       return accessToken
     }
+    
     return null
   }
 }

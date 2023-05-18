@@ -1,6 +1,6 @@
 import { Cliente } from '../../../domain/entities/cliente'
 import { ClientesRepository } from '../../repositories/clientesRepository'
-const Encrypter = require('../../../utils/helpers/encrypter')
+import { Encrypter } from '../../../utils/helpers/encrypter'
 
 interface CriaClienteUseCaseRequest {
   nome: string
