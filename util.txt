@@ -1,7 +1,24 @@
 DOMINIO
 loja
 
-ENTIDADES
+#ENTIDADES
+
 # produto
+## PROPRIEDADES
+## - nome
+## - descricao
+## - preco
+## - imagem
+
 # cliente
+## PROPRIEDADES
+## - nome
+## - email
+## - cpf
+## - senha
+
 # pedido
+## PROPRIEDADES
+## - cliente
+## - produtos
+## - situacao

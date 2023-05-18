@@ -8,7 +8,7 @@ export interface ClienteProps {
     password: string
     createdAt?: Date
     updatedAt?: Date
-  }
+}
 
 export class Cliente extends Entity<ClienteProps> {
     get nome() {
@@ -35,28 +35,20 @@ export class Cliente extends Entity<ClienteProps> {
         return this.props.updatedAt
     }
 
-    private touch() {
-        this.props.updatedAt = new Date()
-      }
-
     set nome(nome: string) {
         this.props.nome = nome
-        this.touch()
     }
 
     set email(email: string) {
         this.props.email = email
-        this.touch()
     }
 
     set cpf(cpf: string) {
         this.props.cpf = cpf
-        this.touch()
     }
 
     set password(password: string) {
         this.props.password = password
-        this.touch()
     }
 
     static create(props: ClienteProps, id?: UniqueEntityID) {
