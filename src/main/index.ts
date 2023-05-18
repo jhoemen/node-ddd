@@ -1,7 +1,5 @@
-import express from 'express'
-
-const env = require('./config/env')
-const app = require('./config/app')
+import app from './config/app'
+import { env } from './config/env'
 import { router } from './routes' // eslint-disable-line
 
 app.use(router)
