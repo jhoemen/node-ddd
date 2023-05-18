@@ -15,7 +15,6 @@ export class InMemoryClienteRepository implements ClientesRepository {
     }
 
     async findByEmail(email: string): Promise<Cliente | null> {
-        console.log('findByEmail-', this.items)
         const cliente = this.items.find((cliente) => cliente.email === email)
 
         if(!cliente) {

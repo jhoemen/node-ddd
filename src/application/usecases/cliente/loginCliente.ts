@@ -1,11 +1,11 @@
 import { Cliente } from '../../../domain/entities/cliente'
 import { ClientesRepository } from '../../repositories/clientesRepository'
 import { MissingParamError, InvalidParamError } from '../../../utils/errors'
+import { env } from '../../../main/config/env'
 
 const EmailValidator = require('../../../utils/helpers/email-validator')
 const Encrypter = require('../../../utils/helpers/encrypter')
 const TokenGenerator = require('../../../utils/helpers/token-generator')
-const env = require('../../../main/config/env')
 
 interface LoginClienteUseCaseRequest {
   email: string
