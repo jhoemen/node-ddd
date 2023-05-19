@@ -1,4 +1,5 @@
 import express from 'express'
+// import { adaptMiddleware } from '../adapters/express-middleware-adapter'
 import { adaptRoute } from '../adapters/express-router-adapter'
 import { adicionarProdutoCarrinhoControllerFactory } from '../factories/adicionarProdutoCarrinhoControllerFactory'
 import { listarProdutoCarrinhoControllerFactory } from '../factories/listarProdutoCarrinhoControllerFactory'
