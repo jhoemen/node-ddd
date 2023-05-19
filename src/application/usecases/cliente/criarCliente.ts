@@ -1,5 +1,5 @@
 import { Cliente } from '../../../domain/entities/cliente'
-import { ClientesRepository } from '../../repositories/clientesRepository'
+import { ClienteRepository } from '../../repositories/clienteRepository'
 import { Encrypter } from '../../../utils/helpers/encrypter'
 
 interface CriaClienteUseCaseRequest {
@@ -14,10 +14,10 @@ interface CriaClienteUseCaseResponse {
 }
 
 export class CriarCliente {
-  constructor(private clientesRepository: ClientesRepository) {}
+  constructor(private clienteRepository: ClienteRepository) {}
 
   async execute({nome, email, cpf, password}: CriaClienteUseCaseRequest): Promise<CriaClienteUseCaseResponse> {
-    const hasCliente = await this.clientesRepository.findByCpf(cpf);
+    const hasCliente = await this.clienteRepository.findByCpf(cpf);
     
     if (hasCliente) {
       throw new Error('Já existe cliente com o cpf informado.')
@@ -33,7 +33,7 @@ export class CriarCliente {
       password,
     })
 
-    await this.clientesRepository.create(cliente)
+    await this.clienteRepository.create(cliente)
 
     return {
       cliente,

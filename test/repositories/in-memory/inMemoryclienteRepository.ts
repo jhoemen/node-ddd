@@ -1,7 +1,8 @@
-import { ClientesRepository } from "../../../src/application/repositories/clientesRepository"
+import { ClienteRepository } from "../../../src/application/repositories/clienteRepository"
+import { UniqueEntityID } from "../../../src/core/entities/unique-entity-id"
 import { Cliente } from "../../../src/domain/entities/cliente"
 
-export class InMemoryClienteRepository implements ClientesRepository {    
+export class InMemoryClienteRepository implements ClienteRepository {    
     public items: Cliente[] = []
 
     async findByCpf(cpf: string): Promise<Cliente | null> {
@@ -24,8 +25,8 @@ export class InMemoryClienteRepository implements ClientesRepository {
         return cliente
     }
 
-    async findById(id: string): Promise<Cliente | null> {
-        const cliente = this.items.find((cliente) => cliente.id.toString() === id)
+    async findById(id: UniqueEntityID): Promise<Cliente | null> {
+        const cliente = this.items.find((cliente) => cliente.id.toString() === id.toString())
 
         if(!cliente) {
             return null
@@ -37,5 +38,4 @@ export class InMemoryClienteRepository implements ClientesRepository {
     async create(cliente: Cliente) {
         this.items.push(cliente)
     }
-
 }

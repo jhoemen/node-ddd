@@ -3,7 +3,7 @@ import { PedidoRepository } from '../../repositories/pedidoRepository'
 import { ProdutoRepository } from '../../repositories/produtoRepository'
 import { Pedido } from '../../../domain/entities/pedido'
 import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
-import { ClientesRepository } from '../../repositories/clientesRepository'
+import { ClienteRepository } from '../../repositories/clienteRepository'
 
 interface AdicionarProdutoCarrinhoUseCaseRequest {
   clienteId: UniqueEntityID
@@ -18,7 +18,7 @@ export class AdicionarProdutoCarrinho {
   constructor(
     private pedidoRepository: PedidoRepository, 
     private produtoRepository: ProdutoRepository,
-    private clienteRepository: ClientesRepository
+    private clienteRepository: ClienteRepository
     ) {}
 
   async execute({clienteId, produto}: AdicionarProdutoCarrinhoUseCaseRequest): Promise<AdicionarProdutoCarrinhoUseCaseResponse> {
@@ -41,7 +41,7 @@ export class AdicionarProdutoCarrinho {
       situacao
     })
 
-    await this.pedidoRepository.adicionarProdutoCarrinho(pedido)
+    await this.pedidoRepository.create(pedido)
 
     return {
         pedido,

@@ -1,7 +1,7 @@
 import { UniqueEntityID } from '../../core/entities/unique-entity-id'
 import { Cliente } from '../../domain/entities/cliente'
 
-export interface ClientesRepository {
+export interface ClienteRepository {
   findById(id: UniqueEntityID): Promise<Cliente | null>
   findByCpf(cpf: string): Promise<Cliente | null>
   findByEmail(email: string): Promise<Cliente | null>

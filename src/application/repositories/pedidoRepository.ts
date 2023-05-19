@@ -1,5 +1,6 @@
 import { Pedido } from '../../domain/entities/pedido'
 
 export interface PedidoRepository {
-  adicionarProdutoCarrinho(pedido: Pedido): Promise<void>
+  findBySituationPendant(): Promise<Pedido | null>
+  create(pedido: Pedido): Promise<void>
 }

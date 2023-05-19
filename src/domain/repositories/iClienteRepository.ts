@@ -1,6 +1,6 @@
 import { Cliente } from '../entities/cliente'
 
-export interface IClientesRepository {
+export interface IClienteRepository {
   findById(id: string): Promise<Cliente | null>
   findByCpf(cpf: string): Promise<Cliente | null>
   findByEmail(email: string): Promise<Cliente | null>

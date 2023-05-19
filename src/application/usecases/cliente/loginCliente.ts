@@ -1,5 +1,5 @@
 import { Cliente } from '../../../domain/entities/cliente'
-import { ClientesRepository } from '../../repositories/clientesRepository'
+import { ClienteRepository } from '../../repositories/clienteRepository'
 import { MissingParamError, InvalidParamError } from '../../../utils/errors'
 import { env } from '../../../main/config/env'
 import { EmailValidator } from '../../../utils/helpers/email-validator'
@@ -12,7 +12,7 @@ interface LoginClienteUseCaseRequest {
 }
 
 export class LoginCliente {
-  constructor(private clientesRepository: ClientesRepository){}
+  constructor(private clienteRepository: ClienteRepository){}
 
   async auth ({email, password}: LoginClienteUseCaseRequest) {
     const emailValidator = new EmailValidator()
@@ -29,7 +29,7 @@ export class LoginCliente {
       return new MissingParamError('password')
     }
     
-    const cliente = await this.clientesRepository.findByEmail(email)
+    const cliente = await this.clienteRepository.findByEmail(email)
     
     const encrypter = new Encrypter()
     const isValid = cliente && await encrypter.compare(password, cliente.password)
