@@ -1,23 +1,22 @@
 import { Entity } from "../../core/entities/entity"
 import { UniqueEntityID } from "../../core/entities/unique-entity-id"
-import { Cliente } from "./cliente"
 import { Produto } from "./produto"
 
 export interface PedidoProps {
-    cliente: Cliente
-    produtos: Produto
+    clienteId: UniqueEntityID
+    produto: Produto
     situacao: string
     createdAt?: Date
     updatedAt?: Date
 }
 
 export class Pedido extends Entity<PedidoProps> {
-    get cliente() {
-        return this.props.cliente
+    get clienteId() {
+        return this.props.clienteId
     }
 
-    get produtos() {
-        return this.props.produtos
+    get produto() {
+        return this.props.produto
     }
 
     get situacao() {
@@ -32,12 +31,12 @@ export class Pedido extends Entity<PedidoProps> {
         return this.props.updatedAt
     }
 
-    set cliente(cliente: Cliente) {
-        this.props.cliente = cliente
+    set clienteId(clienteId: UniqueEntityID) {
+        this.props.clienteId = clienteId
     }
 
-    set produtos(produtos: Produto) {
-        this.props.produtos = produtos
+    set produto(produto: Produto) {
+        this.props.produto = produto
     }
 
     set situacao(situacao: string) {
@@ -46,7 +45,8 @@ export class Pedido extends Entity<PedidoProps> {
 
     static create(props: PedidoProps, id?: UniqueEntityID) {
         const pedido = new Pedido({
-            ...props, 
+            ...props,
+            situacao: props.situacao ?? 'Pendente',
             createdAt: props.createdAt ?? new Date(),
         }, id)
     

@@ -53,7 +53,8 @@ export class CriarClienteController implements Controller {
         email, 
         cpf, 
         password,
-      })  
+      })
+      
       return ok(result)
     } catch (error: any) {
       return fail(new Error(error?.message))
