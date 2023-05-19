@@ -10,8 +10,6 @@ export const adaptRoute = (controller: Controller) => {
       ...request.query,
     }
 
-    console.log('requestData', requestData)
-
     const httpResponse = await controller.handle(requestData)
 
     if (httpResponse.statusCode >= 200 && httpResponse.statusCode <= 299) {

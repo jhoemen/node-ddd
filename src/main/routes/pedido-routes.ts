@@ -1,5 +1,5 @@
 import express from 'express'
-// import { adaptMiddleware } from '../adapters/express-middleware-adapter'
+import { middlewareAuthentication } from '../adapters/express-middleware-adapter'
 import { adaptRoute } from '../adapters/express-router-adapter'
 import { adicionarProdutoCarrinhoControllerFactory } from '../factories/adicionarProdutoCarrinhoControllerFactory'
 import { listarProdutoCarrinhoControllerFactory } from '../factories/listarProdutoCarrinhoControllerFactory'
@@ -9,13 +9,13 @@ const PedidoRouter = express.Router()
 
 const repository = inMemoryRepository
 
-PedidoRouter.post('/adicionarProdutoCarrinho', adaptRoute(adicionarProdutoCarrinhoControllerFactory(
+PedidoRouter.post('/adicionarProdutoCarrinho', middlewareAuthentication(), adaptRoute(adicionarProdutoCarrinhoControllerFactory(
     repository.inMemoryPedidoRepository, 
     repository.inMemoryProdutoRepository,
     repository.inMemoryClienteRepository
 )))
 
-PedidoRouter.post('/listarProdutoCarrinho', adaptRoute(listarProdutoCarrinhoControllerFactory(
+PedidoRouter.post('/listarProdutoCarrinho', middlewareAuthentication(), adaptRoute(listarProdutoCarrinhoControllerFactory(
     repository.inMemoryPedidoRepository,
     repository.inMemoryClienteRepository
 )))    
