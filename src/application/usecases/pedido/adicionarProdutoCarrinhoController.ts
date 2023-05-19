@@ -13,7 +13,7 @@ import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
 
 type AdicionarProdutoCarrinhoUseCaseRequest = {
   clienteId: UniqueEntityID
-  produto: Produto
+  produto: Produto[]
 }
 
 export class AdicionarProdutoCarrinhoController implements Controller {

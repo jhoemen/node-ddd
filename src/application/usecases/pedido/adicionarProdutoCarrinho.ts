@@ -7,7 +7,7 @@ import { ClienteRepository } from '../../repositories/clienteRepository'
 
 interface AdicionarProdutoCarrinhoUseCaseRequest {
   clienteId: UniqueEntityID
-  produto: Produto
+  produto: Produto[]
 }
 
 interface AdicionarProdutoCarrinhoUseCaseResponse {
@@ -21,8 +21,8 @@ export class AdicionarProdutoCarrinho {
     private clienteRepository: ClienteRepository
     ) {}
 
-  async execute({clienteId, produto}: AdicionarProdutoCarrinhoUseCaseRequest): Promise<AdicionarProdutoCarrinhoUseCaseResponse> {
-    const hasProduto = await this.produtoRepository.findById(produto.id);
+  async execute({clienteId, produto}: AdicionarProdutoCarrinhoUseCaseRequest): Promise<void> {
+    const hasProduto = await this.produtoRepository.findById(produto[0].id);
     const hasCliente = await this.clienteRepository.findById(clienteId);
     const cartPendantId = await this.pedidoRepository.getCartPendant(clienteId);
 
@@ -36,16 +36,20 @@ export class AdicionarProdutoCarrinho {
 
     const situacao = 'Pendente'
     
-    const pedido = Pedido.create({
-      clienteId,
-      produto,
-      situacao
-    }, cartPendantId)
-
-    await this.pedidoRepository.create(pedido)
-
-    return {
-        pedido,
+    if (cartPendantId) {
+        const pedido = await this.pedidoRepository.addProductCart(cartPendantId, produto)
+    } else {
+        const pedido = Pedido.create({
+            clienteId,
+            produto,
+            situacao
+          }, cartPendantId)
+      
+          await this.pedidoRepository.create(pedido)
     }
+
+    // return {
+    //     pedido,
+    // }
   }
 }

@@ -4,7 +4,7 @@ import { Produto } from "./produto"
 
 export interface PedidoProps {
     clienteId: UniqueEntityID
-    produto: Produto
+    produto: Produto[]
     situacao: string
     createdAt?: Date
     updatedAt?: Date
@@ -35,7 +35,7 @@ export class Pedido extends Entity<PedidoProps> {
         this.props.clienteId = clienteId
     }
 
-    set produto(produto: Produto) {
+    set produto(produto: Produto[]) {
         this.props.produto = produto
     }
 
