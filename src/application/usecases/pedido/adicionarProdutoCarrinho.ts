@@ -31,7 +31,7 @@ export class AdicionarProdutoCarrinho {
 
     if (!hasCliente) {
         throw new Error('Cliente não localizado.')
-      }
+    }
 
     const situacao = 'Pendente'
     
