@@ -24,7 +24,8 @@ export class AdicionarProdutoCarrinho {
   async execute({clienteId, produto}: AdicionarProdutoCarrinhoUseCaseRequest): Promise<AdicionarProdutoCarrinhoUseCaseResponse> {
     const hasProduto = await this.produtoRepository.findById(produto.id);
     const hasCliente = await this.clienteRepository.findById(clienteId);
-    
+    const cartPendantId = await this.pedidoRepository.getCartPendant(clienteId);
+
     if (!hasProduto) {
       throw new Error('Produto não localizado.')
     }
@@ -39,7 +40,7 @@ export class AdicionarProdutoCarrinho {
       clienteId,
       produto,
       situacao
-    })
+    }, cartPendantId)
 
     await this.pedidoRepository.create(pedido)
 
