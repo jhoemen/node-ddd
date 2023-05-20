@@ -4,30 +4,34 @@ import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
 import { ClienteRepository } from '../../repositories/clienteRepository'
 
 interface ListarProdutoCarrinhoUseCaseRequest {
-  clienteId: UniqueEntityID
+    clienteId: UniqueEntityID
 }
 
 interface ListarProdutoCarrinhoUseCaseResponse {
-  pedido: Pedido[] | null
+    pedido: Pedido[] | []
 }
 
 export class ListarProdutoCarrinho {
-  constructor(
-    private pedidoRepository: PedidoRepository,
-    private clienteRepository: ClienteRepository
+    constructor(
+        private pedidoRepository: PedidoRepository,
+        private clienteRepository: ClienteRepository
     ) {}
 
-  async execute({clienteId}: ListarProdutoCarrinhoUseCaseRequest): Promise<ListarProdutoCarrinhoUseCaseResponse> {
-    const hasCliente = await this.clienteRepository.findById(clienteId)
+    async execute({
+        clienteId,
+    }: ListarProdutoCarrinhoUseCaseRequest): Promise<ListarProdutoCarrinhoUseCaseResponse> {
+        const hasCliente = await this.clienteRepository.findById(clienteId)
 
-    if (!hasCliente) {
-        throw new Error('Cliente não localizado.')
-    }
-    
-    const pedido = await this.pedidoRepository.findBySituationPendant(clienteId)
+        if (!hasCliente) {
+            throw new Error('Cliente não localizado.')
+        }
 
-    return {
-        pedido,
+        const pedido = await this.pedidoRepository.findBySituationPendant(
+            clienteId
+        )
+
+        return {
+            pedido,
+        }
     }
-  }
 }

@@ -8,7 +8,7 @@ export class InMemoryPedidoRepository implements PedidoRepository {
 
     async findBySituationPendant(
         clienteId: UniqueEntityID
-    ): Promise<Pedido[] | null> {
+    ): Promise<Pedido[] | []> {
         const pedido = this.items.filter(
             (pedido) =>
                 pedido &&
@@ -17,7 +17,7 @@ export class InMemoryPedidoRepository implements PedidoRepository {
         )
 
         if (!pedido) {
-            return null
+            return []
         }
 
         return pedido
