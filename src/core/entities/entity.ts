@@ -1,4 +1,3 @@
-import { v4 as uuid } from 'uuid'
 import { UniqueEntityID } from './unique-entity-id'
 
 export abstract class Entity<T> {

@@ -24,7 +24,7 @@ export class AdicionarProdutoCarrinhoController implements Controller {
     produto
   }: AdicionarProdutoCarrinhoUseCaseRequest): Promise<HttpResponse> {
     if (!clienteId) {
-      return fail(new MissingParamError('cliente2'))
+      return fail(new MissingParamError('cliente'))
     }
 
     if (!produto) {
@@ -37,7 +37,7 @@ export class AdicionarProdutoCarrinhoController implements Controller {
         produto
       })
 
-      return ok(result)
+      return ok("Produto adicionado com sucesso.")
     } catch (error: any) {
       return fail(new Error(error?.message))
     }

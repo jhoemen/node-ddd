@@ -10,10 +10,6 @@ interface AdicionarProdutoCarrinhoUseCaseRequest {
   produto: Produto[]
 }
 
-interface AdicionarProdutoCarrinhoUseCaseResponse {
-  pedido: Pedido
-}
-
 export class AdicionarProdutoCarrinho {
   constructor(
     private pedidoRepository: PedidoRepository, 
@@ -43,13 +39,9 @@ export class AdicionarProdutoCarrinho {
             clienteId,
             produto,
             situacao
-          }, cartPendantId)
+        }, cartPendantId)
       
-          await this.pedidoRepository.create(pedido)
+        await this.pedidoRepository.create(pedido)
     }
-
-    // return {
-    //     pedido,
-    // }
   }
 }
