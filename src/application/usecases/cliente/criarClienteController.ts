@@ -8,6 +8,7 @@ import {
 
 import { CriarCliente } from './criarCliente'
 import { MissingParamError, InvalidParamError } from '../../../utils/errors'
+import InvalidParamPasswordError from '../../../utils/errors/invalid-param-password-error'
 
 type LoginClienteUseCaseRequest = {
     nome: string
@@ -40,11 +41,11 @@ export class CriarClienteController implements Controller {
         }
 
         if (!password) {
-            return fail(new MissingParamError('password'))
+            return fail(new InvalidParamPasswordError('password'))
         }
 
         if (password !== password_confirmation) {
-            return fail(new InvalidParamError('password'))
+            return fail(new InvalidParamPasswordError('password'))
         }
 
         try {
