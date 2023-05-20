@@ -6,35 +6,34 @@ import {
     ok,
 } from '../../../infra/httpResponse'
 
-import { AdicionarProdutoCarrinho } from './adicionarProdutoCarrinho'
-import { MissingParamError, InvalidParamError } from '../../../utils/errors'
-import { Produto } from '../../../domain/entities/produto'
+import { RemoverProdutoCarrinho } from './removerProdutoCarrinho'
+import { MissingParamError } from '../../../utils/errors'
 import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
 
-type AdicionarProdutoCarrinhoUseCaseRequest = {
+type RemoverProdutoCarrinhoUseCaseRequest = {
     clienteId: UniqueEntityID
-    produto: Produto[]
+    produtoId: UniqueEntityID
 }
 
-export class AdicionarProdutoCarrinhoController implements Controller {
-    constructor(private adicionarProdutoCarrinho: AdicionarProdutoCarrinho) {}
+export class RemoverProdutoCarrinhoController implements Controller {
+    constructor(private removerProdutoCarrinho: RemoverProdutoCarrinho) {}
 
     async handle({
         clienteId,
-        produto,
-    }: AdicionarProdutoCarrinhoUseCaseRequest): Promise<HttpResponse> {
+        produtoId,
+    }: RemoverProdutoCarrinhoUseCaseRequest): Promise<HttpResponse> {
         if (!clienteId) {
             return fail(new MissingParamError('cliente'))
         }
 
-        if (!produto) {
+        if (!produtoId) {
             return fail(new MissingParamError('produto'))
         }
 
         try {
-            await this.adicionarProdutoCarrinho.execute({
+            await this.removerProdutoCarrinho.execute({
                 clienteId,
-                produto,
+                produtoId,
             })
 
             return ok()

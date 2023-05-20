@@ -1,6 +1,6 @@
 export = class InvalidParamPasswordError extends Error {
-    constructor(paramName: string) {
-        super(`Parâmetro senha inválido: ${paramName}`)
+    constructor() {
+        super(`Parâmetro senha inválido`)
         this.name = 'InvalidParamPasswordError'
     }
 }

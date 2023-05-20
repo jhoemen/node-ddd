@@ -41,11 +41,11 @@ export class CriarClienteController implements Controller {
         }
 
         if (!password) {
-            return fail(new InvalidParamPasswordError('password'))
+            return fail(new InvalidParamPasswordError())
         }
 
         if (password !== password_confirmation) {
-            return fail(new InvalidParamPasswordError('password'))
+            return fail(new InvalidParamPasswordError())
         }
 
         try {

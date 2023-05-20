@@ -6,7 +6,7 @@ export class InMemoryProdutoRepository implements ProdutoRepository {
     public items: Produto[] = []
 
     public constructor() {
-        const idProduto = new UniqueEntityID(
+        var idProduto = new UniqueEntityID(
             '767fe3f2-9983-48ab-a20d-4de74175db25'
         )
 
@@ -21,6 +21,10 @@ export class InMemoryProdutoRepository implements ProdutoRepository {
         )
 
         this.items.push(produto)
+
+        var idProduto = new UniqueEntityID(
+            'c8ed6c49-910c-46e9-9b25-2c14f18338d9'
+        )
 
         var produto = new Produto(
             {
