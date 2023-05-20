@@ -1,9 +1,9 @@
 import { Controller } from '../../../infra/controller'
 import {
-  HttpResponse,
-  fail,
-  clientError,
-  ok,
+    HttpResponse,
+    fail,
+    clientError,
+    ok,
 } from '../../../infra/httpResponse'
 
 import { AdicionarProdutoCarrinho } from './adicionarProdutoCarrinho'
@@ -12,34 +12,34 @@ import { Produto } from '../../../domain/entities/produto'
 import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
 
 type AdicionarProdutoCarrinhoUseCaseRequest = {
-  clienteId: UniqueEntityID
-  produto: Produto[]
+    clienteId: UniqueEntityID
+    produto: Produto[]
 }
 
 export class AdicionarProdutoCarrinhoController implements Controller {
-  constructor(private adicionarProdutoCarrinho: AdicionarProdutoCarrinho) {}
-  
-  async handle({
-    clienteId,
-    produto
-  }: AdicionarProdutoCarrinhoUseCaseRequest): Promise<HttpResponse> {
-    if (!clienteId) {
-      return fail(new MissingParamError('cliente'))
-    }
+    constructor(private adicionarProdutoCarrinho: AdicionarProdutoCarrinho) {}
 
-    if (!produto) {
-      return fail(new MissingParamError('produto'))
-    }
-
-    try {
-      const result = await this.adicionarProdutoCarrinho.execute({
+    async handle({
         clienteId,
-        produto
-      })
+        produto,
+    }: AdicionarProdutoCarrinhoUseCaseRequest): Promise<HttpResponse> {
+        if (!clienteId) {
+            return fail(new MissingParamError('cliente'))
+        }
 
-      return ok("Produto adicionado com sucesso.")
-    } catch (error: any) {
-      return fail(new Error(error?.message))
+        if (!produto) {
+            return fail(new MissingParamError('produto'))
+        }
+
+        try {
+            const result = await this.adicionarProdutoCarrinho.execute({
+                clienteId,
+                produto,
+            })
+
+            return ok()
+        } catch (error: any) {
+            return fail(new Error(error?.message))
+        }
     }
-  }
 }

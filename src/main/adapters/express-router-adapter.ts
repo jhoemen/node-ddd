@@ -21,7 +21,7 @@ export const adaptRoute = (controller: Controller) => {
         if (httpResponse.statusCode >= 200 && httpResponse.statusCode <= 299) {
             const body: BodyResponse = {
                 success: true,
-                message: '',
+                message: 'Operação realizada com sucesso.',
                 data: httpResponse.body,
             }
 
