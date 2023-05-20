@@ -1,29 +1,46 @@
-import { ProdutoRepository } from "../../../src/application/repositories/produtoRepository"
-import { UniqueEntityID } from "../../../src/core/entities/unique-entity-id"
-import { Produto } from "../../../src/domain/entities/produto"
+import { ProdutoRepository } from '../../../src/application/repositories/produtoRepository'
+import { UniqueEntityID } from '../../../src/core/entities/unique-entity-id'
+import { Produto } from '../../../src/domain/entities/produto'
 
-export class InMemoryProdutoRepository implements ProdutoRepository {    
+export class InMemoryProdutoRepository implements ProdutoRepository {
     public items: Produto[] = []
 
-    public constructor () {
-        const idProduto = new UniqueEntityID('95b57038-089c-4c56-990d-53e61cf08620')
+    public constructor() {
+        const idProduto = new UniqueEntityID(
+            '767fe3f2-9983-48ab-a20d-4de74175db25'
+        )
 
-        var produto = new Produto({
-            nome: 'Produto Teste',
-            descricao: 'Descrição do produto teste',
-            preco: '10.00',
-            imagem: 'caminho_imagem.jpg'
-        })
+        var produto = new Produto(
+            {
+                nome: 'Produto Teste 1',
+                descricao: 'Descrição do produto teste 1',
+                preco: '10.00',
+                imagem: 'https://braswu.vteximg.com.br/arquivos/ids/204554-1000-1000/img-produto-teste--1-.png?v=637850297273230000',
+            },
+            idProduto
+        )
 
         this.items.push(produto)
 
-        console.log('InMemoryProdutoRepository', produto)
+        var produto = new Produto(
+            {
+                nome: 'Produto Teste 2',
+                descricao: 'Descrição do produto teste 2',
+                preco: '20.00',
+                imagem: 'https://static3.tcdn.com.br/img/img_prod/468236/produto_teste_auaha_7625_1_f816ad73890b2db46e6e460c44ae5d22.png',
+            },
+            idProduto
+        )
+
+        this.items.push(produto)
     }
 
     async findById(id: UniqueEntityID): Promise<Produto | null> {
-        const produto = this.items.find((produto) => produto.id.toString() === id.toString())
+        const produto = this.items.find(
+            (produto) => produto.id.toString() === id.toString()
+        )
 
-        if(!produto) {
+        if (!produto) {
             return null
         }
 
