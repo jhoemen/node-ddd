@@ -6,55 +6,20 @@ import { removerProdutoCarrinhoControllerFactory } from '../factories/removerPro
 import { listarProdutoCarrinhoControllerFactory } from '../factories/listarProdutoCarrinhoControllerFactory'
 import inMemoryRepository from './repository'
 import { finalizarPedidoControllerFactory } from '../factories/finalizarPedidoControllerFactory'
+import { listarPedidoControllerFactory } from '../factories/listarPedidoControllerFactory'
 
 const PedidoRouter = express.Router()
 
 const repository = inMemoryRepository
 
-PedidoRouter.post(
-    '/adicionarProdutoCarrinho',
-    middlewareAuthentication(),
-    adaptRoute(
-        adicionarProdutoCarrinhoControllerFactory(
-            repository.inMemoryPedidoRepository,
-            repository.inMemoryProdutoRepository,
-            repository.inMemoryClienteRepository
-        )
-    )
-)
+PedidoRouter.post('/adicionarProdutoCarrinho', middlewareAuthentication(), adaptRoute(adicionarProdutoCarrinhoControllerFactory(repository.inMemoryPedidoRepository, repository.inMemoryProdutoRepository, repository.inMemoryClienteRepository)))
 
-PedidoRouter.post(
-    '/removerProdutoCarrinho',
-    middlewareAuthentication(),
-    adaptRoute(
-        removerProdutoCarrinhoControllerFactory(
-            repository.inMemoryPedidoRepository,
-            repository.inMemoryProdutoRepository,
-            repository.inMemoryClienteRepository
-        )
-    )
-)
+PedidoRouter.post('/removerProdutoCarrinho', middlewareAuthentication(), adaptRoute(removerProdutoCarrinhoControllerFactory(repository.inMemoryPedidoRepository, repository.inMemoryProdutoRepository, repository.inMemoryClienteRepository)))
 
-PedidoRouter.post(
-    '/listarProdutoCarrinho',
-    middlewareAuthentication(),
-    adaptRoute(
-        listarProdutoCarrinhoControllerFactory(
-            repository.inMemoryPedidoRepository,
-            repository.inMemoryClienteRepository
-        )
-    )
-)
+PedidoRouter.get('/listarProdutoCarrinho', middlewareAuthentication(), adaptRoute(listarProdutoCarrinhoControllerFactory(repository.inMemoryPedidoRepository, repository.inMemoryClienteRepository)))
 
-PedidoRouter.post(
-    '/finalizarPedido',
-    middlewareAuthentication(),
-    adaptRoute(
-        finalizarPedidoControllerFactory(
-            repository.inMemoryPedidoRepository,
-            repository.inMemoryClienteRepository
-        )
-    )
-)
+PedidoRouter.get('/listarPedido', middlewareAuthentication(), adaptRoute(listarPedidoControllerFactory(repository.inMemoryPedidoRepository, repository.inMemoryClienteRepository)))
+
+PedidoRouter.post('/finalizarPedido', middlewareAuthentication(), adaptRoute(finalizarPedidoControllerFactory(repository.inMemoryPedidoRepository, repository.inMemoryClienteRepository)))
 
 export { PedidoRouter }

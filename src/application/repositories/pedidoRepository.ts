@@ -4,6 +4,7 @@ import { Produto } from '../../domain/entities/produto'
 
 export interface PedidoRepository {
     findBySituationPendant(clienteId: UniqueEntityID): Promise<Pedido[] | []>
+    listOrderConcluded(clienteId: UniqueEntityID): Promise<Pedido[] | []>
     getCartPendant(
         clienteId: UniqueEntityID
     ): Promise<UniqueEntityID | undefined>

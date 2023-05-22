@@ -12,7 +12,24 @@ export class InMemoryPedidoRepository implements PedidoRepository {
         const pedido = this.items.filter(
             (pedido) =>
                 pedido &&
-                pedido.situacao == 'Pendente' &&
+                pedido.situacao === 'Pendente' &&
+                pedido.clienteId === clienteId
+        )
+
+        if (!pedido) {
+            return []
+        }
+
+        return pedido
+    }
+
+    async listOrderConcluded(
+        clienteId: UniqueEntityID
+    ): Promise<Pedido[] | []> {
+        const pedido = this.items.filter(
+            (pedido) =>
+                pedido &&
+                pedido.situacao === 'Concluido' &&
                 pedido.clienteId === clienteId
         )
 
@@ -29,7 +46,7 @@ export class InMemoryPedidoRepository implements PedidoRepository {
         const pedido = this.items.find(
             (pedido) =>
                 pedido &&
-                pedido.situacao == 'Pendente' &&
+                pedido.situacao === 'Pendente' &&
                 pedido.clienteId === clienteId
         )
 
@@ -57,7 +74,7 @@ export class InMemoryPedidoRepository implements PedidoRepository {
         const pedidoIndex = this.items.findIndex(
             (pedido) =>
                 pedido &&
-                pedido.situacao == 'Pendente' &&
+                pedido.situacao === 'Pendente' &&
                 pedido.id === pedidoId
         )
 
@@ -71,7 +88,7 @@ export class InMemoryPedidoRepository implements PedidoRepository {
         const pedidoIndex = this.items.findIndex(
             (pedido) =>
                 pedido &&
-                pedido.situacao == 'Pendente' &&
+                pedido.situacao === 'Pendente' &&
                 pedido.id === pedidoId
         )
         const produtos = this.items[pedidoIndex].produto.filter(
@@ -85,7 +102,7 @@ export class InMemoryPedidoRepository implements PedidoRepository {
         const pedidoIndex = this.items.findIndex(
             (pedido) =>
                 pedido &&
-                pedido.situacao == 'Pendente' &&
+                pedido.situacao === 'Pendente' &&
                 pedido.id === pedidoId
         )
 
