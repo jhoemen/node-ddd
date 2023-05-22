@@ -6,7 +6,7 @@ export type HttpResponse = {
 export function ok<T>(dto?: T): HttpResponse {
     return {
         statusCode: 200,
-        body: dto,
+        body: dto ?? '',
     }
 }
 

@@ -1,33 +1,22 @@
 import { PedidoRepository } from '../../repositories/pedidoRepository'
-import { ProdutoRepository } from '../../repositories/produtoRepository'
 import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
 import { ClienteRepository } from '../../repositories/clienteRepository'
 
-interface RemoverProdutoCarrinhoUseCaseRequest {
+interface FinalizarPedidoUseCaseRequest {
     clienteId: UniqueEntityID
-    produtoId: UniqueEntityID
 }
 
-export class RemoverProdutoCarrinho {
+export class FinalizarPedido {
     constructor(
         private pedidoRepository: PedidoRepository,
-        private produtoRepository: ProdutoRepository,
         private clienteRepository: ClienteRepository
     ) {}
 
-    async execute({
-        clienteId,
-        produtoId,
-    }: RemoverProdutoCarrinhoUseCaseRequest): Promise<void> {
-        const hasProduto = await this.produtoRepository.findById(produtoId)
+    async execute({ clienteId }: FinalizarPedidoUseCaseRequest): Promise<void> {
         const hasCliente = await this.clienteRepository.findById(clienteId)
         const cartPendantId = await this.pedidoRepository.getCartPendant(
             clienteId
         )
-
-        if (!hasProduto) {
-            throw new Error('Produto não localizado.')
-        }
 
         if (!hasCliente) {
             throw new Error('Cliente não localizado.')
@@ -37,6 +26,6 @@ export class RemoverProdutoCarrinho {
             throw new Error('Pedido não localizado.')
         }
 
-        await this.pedidoRepository.delProductCart(cartPendantId, produtoId)
+        await this.pedidoRepository.checkoutCart(cartPendantId)
     }
 }

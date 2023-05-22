@@ -24,12 +24,16 @@ export class ListarProdutoCarrinhoController implements Controller {
                 clienteId,
             })
 
-            const adpterResult = {
-                id: result.pedido[0].id.toString(),
-                ...result?.pedido[0].props,
-            }
+            if (result.pedido.length > 0) {
+                const adpterResult = {
+                    id: result.pedido[0].id.toString(),
+                    ...result?.pedido[0].props,
+                }
 
-            return ok(adpterResult)
+                return ok(adpterResult)
+            } else {
+                return ok()
+            }
         } catch (error: any) {
             return fail(new Error(error?.message))
         }

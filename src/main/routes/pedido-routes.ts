@@ -5,6 +5,7 @@ import { adicionarProdutoCarrinhoControllerFactory } from '../factories/adiciona
 import { removerProdutoCarrinhoControllerFactory } from '../factories/removerProdutoCarrinhoControllerFactory'
 import { listarProdutoCarrinhoControllerFactory } from '../factories/listarProdutoCarrinhoControllerFactory'
 import inMemoryRepository from './repository'
+import { finalizarPedidoControllerFactory } from '../factories/finalizarPedidoControllerFactory'
 
 const PedidoRouter = express.Router()
 
@@ -39,6 +40,17 @@ PedidoRouter.post(
     middlewareAuthentication(),
     adaptRoute(
         listarProdutoCarrinhoControllerFactory(
+            repository.inMemoryPedidoRepository,
+            repository.inMemoryClienteRepository
+        )
+    )
+)
+
+PedidoRouter.post(
+    '/finalizarPedido',
+    middlewareAuthentication(),
+    adaptRoute(
+        finalizarPedidoControllerFactory(
             repository.inMemoryPedidoRepository,
             repository.inMemoryClienteRepository
         )
