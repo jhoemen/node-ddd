@@ -6,6 +6,9 @@
 [] Organizar o projeto nas respectivas pastas
 [] Desenvolver os testes com a biblioteca JEST, testes unitários e testes de integração
 
+#OPCIONAL
+[] Criar função para incrementar e decrementar quantidade de produto no carrinho
+
 # DOMINIO
 ## loja
 

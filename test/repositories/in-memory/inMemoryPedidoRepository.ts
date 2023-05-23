@@ -6,15 +6,8 @@ import { Produto } from '../../../src/domain/entities/produto'
 export class InMemoryPedidoRepository implements PedidoRepository {
     public items: Pedido[] = []
 
-    async findBySituationPendant(
-        clienteId: UniqueEntityID
-    ): Promise<Pedido[] | []> {
-        const pedido = this.items.filter(
-            (pedido) =>
-                pedido &&
-                pedido.situacao === 'Pendente' &&
-                pedido.clienteId === clienteId
-        )
+    async findBySituationPendant(clienteId: UniqueEntityID): Promise<Pedido[] | []> {
+        const pedido = this.items.filter((pedido) => pedido && pedido.situacao === 'Pendente' && pedido.clienteId === clienteId)
 
         if (!pedido) {
             return []
@@ -23,15 +16,8 @@ export class InMemoryPedidoRepository implements PedidoRepository {
         return pedido
     }
 
-    async listOrderConcluded(
-        clienteId: UniqueEntityID
-    ): Promise<Pedido[] | []> {
-        const pedido = this.items.filter(
-            (pedido) =>
-                pedido &&
-                pedido.situacao === 'Concluido' &&
-                pedido.clienteId === clienteId
-        )
+    async listOrderConcluded(clienteId: UniqueEntityID): Promise<Pedido[] | []> {
+        const pedido = this.items.filter((pedido) => pedido && pedido.situacao === 'Concluido' && pedido.clienteId === clienteId)
 
         if (!pedido) {
             return []
@@ -40,15 +26,8 @@ export class InMemoryPedidoRepository implements PedidoRepository {
         return pedido
     }
 
-    async getCartPendant(
-        clienteId: UniqueEntityID
-    ): Promise<UniqueEntityID | undefined> {
-        const pedido = this.items.find(
-            (pedido) =>
-                pedido &&
-                pedido.situacao === 'Pendente' &&
-                pedido.clienteId === clienteId
-        )
+    async getCartPendant(clienteId: UniqueEntityID): Promise<UniqueEntityID | undefined> {
+        const pedido = this.items.find((pedido) => pedido && pedido.situacao === 'Pendente' && pedido.clienteId === clienteId)
 
         if (!pedido) {
             return undefined
@@ -57,54 +36,27 @@ export class InMemoryPedidoRepository implements PedidoRepository {
         return pedido.id
     }
 
-    async clearCartPendant(clienteId: UniqueEntityID): Promise<void> {
-        const pedido = this.items.filter(
-            (pedido) =>
-                pedido &&
-                pedido.situacao !== 'Pendente' &&
-                pedido.clienteId === clienteId
-        )
-        this.items = pedido
+    async clearCartPendant(pedidoId: UniqueEntityID): Promise<void> {
+        const pedidoIndex = this.items.findIndex((pedido) => pedido && pedido.situacao === 'Pendente' && pedido.id === pedidoId)
+
+        this.items.splice(pedidoIndex, 1)
     }
 
-    async addProductCart(
-        pedidoId: UniqueEntityID,
-        produto: Produto[]
-    ): Promise<void> {
-        const pedidoIndex = this.items.findIndex(
-            (pedido) =>
-                pedido &&
-                pedido.situacao === 'Pendente' &&
-                pedido.id === pedidoId
-        )
+    async addProductCart(pedidoId: UniqueEntityID, produto: Produto[]): Promise<void> {
+        const pedidoIndex = this.items.findIndex((pedido) => pedido && pedido.situacao === 'Pendente' && pedido.id === pedidoId)
 
         this.items[pedidoIndex].produto.push(produto[0])
     }
 
-    async delProductCart(
-        pedidoId: UniqueEntityID,
-        produtoId: UniqueEntityID
-    ): Promise<void> {
-        const pedidoIndex = this.items.findIndex(
-            (pedido) =>
-                pedido &&
-                pedido.situacao === 'Pendente' &&
-                pedido.id === pedidoId
-        )
-        const produtos = this.items[pedidoIndex].produto.filter(
-            (produto) => produto && produto.id !== produtoId
-        )
+    async delProductCart(pedidoId: UniqueEntityID, produtoId: UniqueEntityID): Promise<void> {
+        const pedidoIndex = this.items.findIndex((pedido) => pedido && pedido.situacao === 'Pendente' && pedido.id === pedidoId)
+        const produtos = this.items[pedidoIndex].produto.filter((produto) => produto && produto.id !== produtoId)
 
         this.items[pedidoIndex].produto = produtos
     }
 
     async checkoutCart(pedidoId: UniqueEntityID): Promise<void> {
-        const pedidoIndex = this.items.findIndex(
-            (pedido) =>
-                pedido &&
-                pedido.situacao === 'Pendente' &&
-                pedido.id === pedidoId
-        )
+        const pedidoIndex = this.items.findIndex((pedido) => pedido && pedido.situacao === 'Pendente' && pedido.id === pedidoId)
 
         this.items[pedidoIndex].situacao = 'Concluido'
     }
