@@ -1,14 +1,10 @@
 import jwt from 'jsonwebtoken'
 import { Request, Response, NextFunction } from 'express'
 import { MissingParamError } from '../../utils/errors'
-import { env } from '../../main/config/env'
+import { env } from '../config/env'
 
 export const middlewareAuthentication = () => {
-    return async function (
-        request: Request,
-        response: Response,
-        next: NextFunction
-    ) {
+    return async function (request: Request, response: Response, next: NextFunction) {
         const requestData = {
             ...(request.headers || {}),
         }
@@ -27,9 +23,7 @@ export const middlewareAuthentication = () => {
             const clienteId = decode['_id'].value
 
             if (!clienteId) {
-                response
-                    .status(401)
-                    .json(new MissingParamError('token').message)
+                response.status(401).json(new MissingParamError('token').message)
             }
 
             request.body.clienteId = clienteId

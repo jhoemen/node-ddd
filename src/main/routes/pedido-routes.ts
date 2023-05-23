@@ -1,5 +1,5 @@
 import express from 'express'
-import { middlewareAuthentication } from '../adapters/express-middleware-adapter'
+import { middlewareAuthentication } from '../middlewares/express-middleware-adapter'
 import { adaptRoute } from '../adapters/express-router-adapter'
 import { adicionarProdutoCarrinhoControllerFactory } from '../factories/adicionarProdutoCarrinhoControllerFactory'
 import { removerProdutoCarrinhoControllerFactory } from '../factories/removerProdutoCarrinhoControllerFactory'
