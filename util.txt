@@ -1,6 +1,5 @@
 # TAREFAS
 [x] Criar fução para finalizar o pedido, alterando o status para "Concluido"
-[ ] Criar função para incrementar e decrementar produto do carrinho
 [x] Criar função de limpar o carrinho de compra
 [x] Criar função de listar todos os pedidos com situação "Concluido" do cliente
 [ ] Organizar o projeto nas respectivas pastas

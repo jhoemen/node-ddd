@@ -1,14 +1,8 @@
 import { Controller } from '../../../infra/controller'
-import {
-    HttpResponse,
-    fail,
-    clientError,
-    ok,
-} from '../../../infra/httpResponse'
+import { HttpResponse, fail, clientError, ok } from '../../../infra/httpResponse'
 
 import { CriarCliente } from './criarCliente'
-import { MissingParamError, InvalidParamError } from '../../../utils/errors'
-import InvalidParamPasswordError from '../../../utils/errors/invalid-param-password-error'
+import { MissingParamError, InvalidParamPasswordError } from '../../../utils/errors'
 
 type LoginClienteUseCaseRequest = {
     nome: string
@@ -21,13 +15,7 @@ type LoginClienteUseCaseRequest = {
 export class CriarClienteController implements Controller {
     constructor(private criarCliente: CriarCliente) {}
 
-    async handle({
-        nome,
-        email,
-        cpf,
-        password,
-        password_confirmation,
-    }: LoginClienteUseCaseRequest): Promise<HttpResponse> {
+    async handle({ nome, email, cpf, password, password_confirmation }: LoginClienteUseCaseRequest): Promise<HttpResponse> {
         if (!nome) {
             return fail(new MissingParamError('nome'))
         }
