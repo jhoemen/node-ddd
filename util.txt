@@ -1,10 +1,11 @@
 # TAREFAS
-[x] Criar fução para finalizar o pedido, alterando o status para "Concluido".
-[] Na função de remover produto do carrinho, remover um produto por vez, caso o pedido possuo o mesmo produto mais de uma vez
-[] Criar função de limpar o carrinho de compra
+[x] Criar fução para finalizar o pedido, alterando o status para "Concluido"
+[ ] Criar função para incrementar e decrementar produto do carrinho
+[x] Criar função de limpar o carrinho de compra
 [x] Criar função de listar todos os pedidos com situação "Concluido" do cliente
-[] Organizar o projeto nas respectivas pastas
-[] Desenvolver os testes com a biblioteca JEST, testes unitários e testes de integração
+[ ] Organizar o projeto nas respectivas pastas
+[ ] Desenvolver os testes com a biblioteca JEST, testes unitários e testes de integração
+[x] Corrigir função de login, validar e-mail e senha
 
 #OPCIONAL
 [] Criar função para incrementar e decrementar quantidade de produto no carrinho
