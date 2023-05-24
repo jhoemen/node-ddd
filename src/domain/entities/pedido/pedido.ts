@@ -1,6 +1,6 @@
-import { Entity } from "../../core/entities/entity"
-import { UniqueEntityID } from "../../core/entities/unique-entity-id"
-import { Produto } from "./produto"
+import { Entity } from '../../../core/entities/entity'
+import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
+import { Produto } from '../produto/produto'
 
 export interface PedidoProps {
     clienteId: UniqueEntityID
@@ -26,7 +26,7 @@ export class Pedido extends Entity<PedidoProps> {
     get createdAt() {
         return this.props.createdAt
     }
-    
+
     get updatedAt() {
         return this.props.updatedAt
     }
@@ -44,12 +44,15 @@ export class Pedido extends Entity<PedidoProps> {
     }
 
     static create(props: PedidoProps, id?: UniqueEntityID) {
-        const pedido = new Pedido({
-            ...props,
-            situacao: props.situacao ?? 'Pendente',
-            createdAt: props.createdAt ?? new Date(),
-        }, id)
-    
+        const pedido = new Pedido(
+            {
+                ...props,
+                situacao: props.situacao ?? 'Pendente',
+                createdAt: props.createdAt ?? new Date(),
+            },
+            id
+        )
+
         return pedido
-      }
+    }
 }

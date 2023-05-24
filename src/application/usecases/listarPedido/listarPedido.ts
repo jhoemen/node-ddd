@@ -1,5 +1,5 @@
 import { PedidoRepository } from '../../repositories/pedidoRepository'
-import { Pedido } from '../../../domain/entities/pedido'
+import { Pedido } from '../../../domain/entities/pedido/pedido'
 import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
 import { ClienteRepository } from '../../repositories/clienteRepository'
 
@@ -12,14 +12,9 @@ interface ListarPedidoUseCaseResponse {
 }
 
 export class ListarPedido {
-    constructor(
-        private pedidoRepository: PedidoRepository,
-        private clienteRepository: ClienteRepository
-    ) {}
+    constructor(private pedidoRepository: PedidoRepository, private clienteRepository: ClienteRepository) {}
 
-    async execute({
-        clienteId,
-    }: ListarPedidoUseCaseRequest): Promise<ListarPedidoUseCaseResponse> {
+    async execute({ clienteId }: ListarPedidoUseCaseRequest): Promise<ListarPedidoUseCaseResponse> {
         const hasCliente = await this.clienteRepository.findById(clienteId)
 
         if (!hasCliente) {

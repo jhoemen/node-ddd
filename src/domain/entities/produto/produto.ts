@@ -1,5 +1,5 @@
-import { Entity } from "../../core/entities/entity"
-import { UniqueEntityID } from "../../core/entities/unique-entity-id"
+import { Entity } from '../../../core/entities/entity'
+import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
 
 export interface ProdutoProps {
     nome: string
@@ -30,7 +30,7 @@ export class Produto extends Entity<ProdutoProps> {
     get createdAt() {
         return this.props.createdAt
     }
-    
+
     get updatedAt() {
         return this.props.updatedAt
     }
@@ -41,7 +41,7 @@ export class Produto extends Entity<ProdutoProps> {
 
     set descricao(descricao: string) {
         this.props.descricao = descricao
-    }    
+    }
 
     set preco(preco: string) {
         this.props.preco = preco
@@ -52,11 +52,14 @@ export class Produto extends Entity<ProdutoProps> {
     }
 
     static create(props: ProdutoProps, id?: UniqueEntityID) {
-        const produto = new Produto({
-            ...props, 
-            createdAt: props.createdAt ?? new Date(),
-        }, id)
-    
+        const produto = new Produto(
+            {
+                ...props,
+                createdAt: props.createdAt ?? new Date(),
+            },
+            id
+        )
+
         return produto
-      }
+    }
 }

@@ -1,4 +1,4 @@
-import { Cliente } from '../../../domain/entities/cliente'
+import { Cliente } from '../../../domain/entities/cliente/cliente'
 import { ClienteRepository } from '../../repositories/clienteRepository'
 import { MissingParamError, InvalidParamError } from '../../../utils/errors'
 import { env } from '../../../main/config/env'

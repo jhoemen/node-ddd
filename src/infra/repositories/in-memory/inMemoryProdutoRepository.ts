@@ -1,6 +1,6 @@
 import { ProdutoRepository } from '../../../application/repositories/produtoRepository'
 import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
-import { Produto } from '../../../domain/entities/produto'
+import { Produto } from '../../../domain/entities/produto/produto'
 
 export class InMemoryProdutoRepository implements ProdutoRepository {
     public items: Produto[] = []

@@ -1,6 +1,6 @@
-import { Cliente } from '../../../domain/entities/cliente/cliente'
-import { ClienteRepository } from '../../repositories/clienteRepository'
-import { Encrypter } from '../../../utils/helpers/encrypter'
+import { Cliente } from '../../../../domain/entities/cliente/cliente'
+import { ClienteRepository } from '../../../repositories/clienteRepository'
+import { Encrypter } from '../../../../utils/helpers/encrypter'
 
 interface CriaClienteUseCaseRequest {
     nome: string

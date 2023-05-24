@@ -1,5 +1,5 @@
-import { Entity } from "../../core/entities/entity"
-import { UniqueEntityID } from "../../core/entities/unique-entity-id"
+import { Entity } from '../../../core/entities/entity'
+import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
 
 export interface ClienteProps {
     nome: string
@@ -30,7 +30,7 @@ export class Cliente extends Entity<ClienteProps> {
     get createdAt() {
         return this.props.createdAt
     }
-    
+
     get updatedAt() {
         return this.props.updatedAt
     }
@@ -52,11 +52,14 @@ export class Cliente extends Entity<ClienteProps> {
     }
 
     static create(props: ClienteProps, id?: UniqueEntityID) {
-        const cliente = new Cliente({
-            ...props, 
-            createdAt: props.createdAt ?? new Date(),
-        }, id)
-    
+        const cliente = new Cliente(
+            {
+                ...props,
+                createdAt: props.createdAt ?? new Date(),
+            },
+            id
+        )
+
         return cliente
-      }
+    }
 }

@@ -1,6 +1,6 @@
-import { Pedido } from '../../../domain/entities/pedido'
+import { Pedido } from '../../../domain/entities/pedido/pedido'
 import { PedidoRepository } from '../../../application/repositories/pedidoRepository'
-import { Produto } from '../../../domain/entities/produto'
+import { Produto } from '../../../domain/entities/produto/produto'
 import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
 
 export class InMemoryPedidoRepository implements PedidoRepository {
