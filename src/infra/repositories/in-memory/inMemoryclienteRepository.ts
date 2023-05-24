@@ -1,4 +1,4 @@
-import { ClienteRepository } from '../../../application/repositories/clienteRepository'
+import { ClienteRepository } from '../../../domain/repositories/clienteRepository'
 import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
 import { Cliente } from '../../../domain/entities/cliente/cliente'
 

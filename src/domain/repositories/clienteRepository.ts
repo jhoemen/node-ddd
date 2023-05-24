@@ -1,5 +1,5 @@
 import { UniqueEntityID } from '../../core/entities/unique-entity-id'
-import { Cliente } from '../../domain/entities/cliente/cliente'
+import { Cliente } from '../entities/cliente/cliente'
 
 export interface ClienteRepository {
     findById(id: UniqueEntityID): Promise<Cliente | null>

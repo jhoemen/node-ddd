@@ -1,6 +1,6 @@
 import { UniqueEntityID } from '../../core/entities/unique-entity-id'
-import { Pedido } from '../../domain/entities/pedido/pedido'
-import { Produto } from '../../domain/entities/produto/produto'
+import { Pedido } from '../entities/pedido/pedido'
+import { Produto } from '../entities/produto/produto'
 
 export interface PedidoRepository {
     findBySituationPendant(clienteId: UniqueEntityID): Promise<Pedido[] | []>

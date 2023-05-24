@@ -1,7 +1,7 @@
-import { PedidoRepository } from '../../repositories/pedidoRepository'
+import { PedidoRepository } from '../../../domain/repositories/pedidoRepository'
 import { Pedido } from '../../../domain/entities/pedido/pedido'
 import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
-import { ClienteRepository } from '../../repositories/clienteRepository'
+import { ClienteRepository } from '../../../domain/repositories/clienteRepository'
 
 interface ListarPedidoUseCaseRequest {
     clienteId: UniqueEntityID

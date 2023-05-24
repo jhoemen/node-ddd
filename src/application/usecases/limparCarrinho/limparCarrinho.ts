@@ -1,6 +1,6 @@
-import { PedidoRepository } from '../../repositories/pedidoRepository'
+import { PedidoRepository } from '../../../domain/repositories/pedidoRepository'
 import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
-import { ClienteRepository } from '../../repositories/clienteRepository'
+import { ClienteRepository } from '../../../domain/repositories/clienteRepository'
 
 interface LimparCarrinhoUseCaseRequest {
     clienteId: UniqueEntityID

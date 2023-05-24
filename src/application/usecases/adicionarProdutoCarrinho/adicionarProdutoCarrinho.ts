@@ -1,9 +1,9 @@
 import { Produto } from '../../../domain/entities/produto/produto'
-import { PedidoRepository } from '../../repositories/pedidoRepository'
-import { ProdutoRepository } from '../../repositories/produtoRepository'
+import { PedidoRepository } from '../../../domain/repositories/pedidoRepository'
+import { ProdutoRepository } from '../../../domain/repositories/produtoRepository'
 import { Pedido } from '../../../domain/entities/pedido/pedido'
 import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
-import { ClienteRepository } from '../../repositories/clienteRepository'
+import { ClienteRepository } from '../../../domain/repositories/clienteRepository'
 
 interface AdicionarProdutoCarrinhoUseCaseRequest {
     clienteId: UniqueEntityID
