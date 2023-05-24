@@ -1,5 +1,4 @@
 import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
-import { Pedido } from '../../../domain/entities/pedido'
 import { Controller } from '../../../infra/controller'
 import { HttpResponse, fail, clientError, ok } from '../../../infra/httpResponse'
 

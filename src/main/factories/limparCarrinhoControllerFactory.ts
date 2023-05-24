@@ -1,8 +1,8 @@
 import { Controller } from '../../infra/controller'
-import { LimparCarrinho } from '../../application/usecases/pedido/limparCarrinho'
+import { LimparCarrinho } from '../../application/usecases/limparCarrinho/limparCarrinho'
 import { InMemoryPedidoRepository } from '../../../test/repositories/in-memory/inMemoryPedidoRepository'
 import { InMemoryClienteRepository } from '../../../test/repositories/in-memory/inMemoryclienteRepository'
-import { LimparCarrinhoController } from '../../application/usecases/pedido/limparCarrinhoController'
+import { LimparCarrinhoController } from '../../application/usecases/limparCarrinho/limparCarrinhoController'
 
 export function limparCarrinhoControllerFactory(inMemoryPedidoRepository: InMemoryPedidoRepository, inMemoryClienteRepository: InMemoryClienteRepository): Controller {
     const limpar = new LimparCarrinho(inMemoryPedidoRepository, inMemoryClienteRepository)

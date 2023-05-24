@@ -1,6 +1,6 @@
 import { InMemoryClienteRepository } from '../../../../test/repositories/in-memory/inMemoryclienteRepository'
 import { Cliente } from '../../../domain/entities/cliente'
-import { CriarCliente } from './criarCliente'
+import { CriarCliente } from '.'
 
 describe('criar cliente', () => {
     it('Should create cliente', async () => {
