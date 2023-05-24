@@ -1,8 +1,9 @@
 import { Controller } from '../../../infra/controller'
-import { HttpResponse, fail, clientError, ok } from '../../../infra/httpResponse'
+import { HttpResponse, clientError, ok } from '../../../infra/httpResponse'
 
 import { CriarCliente } from './criarCliente'
-import { MissingParamError, InvalidParamPasswordError } from '../../../utils/errors'
+import { MissingParamError, InvalidParamPasswordError, InvalidParamError } from '../../../utils/errors'
+import { EmailValidator } from '../../../utils/helpers/email-validator'
 
 type LoginClienteUseCaseRequest = {
     nome: string
@@ -16,24 +17,30 @@ export class CriarClienteController implements Controller {
     constructor(private criarCliente: CriarCliente) {}
 
     async handle({ nome, email, cpf, password, password_confirmation }: LoginClienteUseCaseRequest): Promise<HttpResponse> {
+        const emailValidator = new EmailValidator()
+
         if (!nome) {
-            return fail(new MissingParamError('nome'))
+            return clientError(new MissingParamError('nome'))
         }
 
         if (!email) {
-            return fail(new MissingParamError('email'))
+            return clientError(new MissingParamError('email'))
+        }
+
+        if (!emailValidator.isValid(email)) {
+            return clientError(new InvalidParamError('email'))
         }
 
         if (!cpf) {
-            return fail(new MissingParamError('cpf'))
+            return clientError(new MissingParamError('cpf'))
         }
 
         if (!password) {
-            return fail(new InvalidParamPasswordError())
+            return clientError(new InvalidParamPasswordError())
         }
 
         if (password !== password_confirmation) {
-            return fail(new InvalidParamPasswordError())
+            return clientError(new InvalidParamPasswordError())
         }
 
         try {
@@ -51,7 +58,7 @@ export class CriarClienteController implements Controller {
 
             return ok(adpterResult)
         } catch (error: any) {
-            return fail(new Error(error?.message))
+            return clientError(new Error(error?.message))
         }
     }
 }

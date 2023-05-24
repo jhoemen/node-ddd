@@ -2,9 +2,11 @@
 [x] Criar fução para finalizar o pedido, alterando o status para "Concluido"
 [x] Criar função de limpar o carrinho de compra
 [x] Criar função de listar todos os pedidos com situação "Concluido" do cliente
-[ ] Organizar o projeto nas respectivas pastas
+[x] Organizar o projeto nas respectivas pastas
 [ ] Desenvolver os testes com a biblioteca JEST, testes unitários e testes de integração
 [x] Corrigir função de login, validar e-mail e senha
+[ ] Documentar a arquitetura da aplicação, explicando as camadas e suas responsabilidades, 
+como as classes se comunicam e como as regras de negócio são aplicadas.
 
 #OPCIONAL
 [] Criar função para incrementar e decrementar quantidade de produto no carrinho

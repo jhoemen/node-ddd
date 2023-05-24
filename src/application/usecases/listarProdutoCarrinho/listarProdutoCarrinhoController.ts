@@ -1,6 +1,6 @@
 import { UniqueEntityID } from '../../../utils/helpers/unique-entity-id'
 import { Controller } from '../../../infra/controller'
-import { HttpResponse, fail, clientError, ok } from '../../../infra/httpResponse'
+import { HttpResponse, clientError, ok } from '../../../infra/httpResponse'
 
 import { ListarProdutoCarrinho } from './listarProdutoCarrinho'
 
@@ -28,7 +28,7 @@ export class ListarProdutoCarrinhoController implements Controller {
                 return ok()
             }
         } catch (error: any) {
-            return fail(new Error(error?.message))
+            return clientError(new Error(error?.message))
         }
     }
 }

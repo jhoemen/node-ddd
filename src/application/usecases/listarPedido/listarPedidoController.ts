@@ -1,6 +1,6 @@
 import { UniqueEntityID } from '../../../utils/helpers/unique-entity-id'
 import { Controller } from '../../../infra/controller'
-import { HttpResponse, fail, clientError, ok } from '../../../infra/httpResponse'
+import { HttpResponse, clientError, ok } from '../../../infra/httpResponse'
 
 import { ListarPedido } from './listarPedido'
 
@@ -30,7 +30,7 @@ export class ListarPedidoController implements Controller {
 
             return ok(listAdapterResult)
         } catch (error: any) {
-            return fail(new Error(error?.message))
+            return clientError(new Error(error?.message))
         }
     }
 }

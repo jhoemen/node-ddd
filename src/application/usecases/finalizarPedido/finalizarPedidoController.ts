@@ -1,5 +1,5 @@
 import { Controller } from '../../../infra/controller'
-import { HttpResponse, fail, clientError, ok } from '../../../infra/httpResponse'
+import { HttpResponse, clientError, ok } from '../../../infra/httpResponse'
 
 import { FinalizarPedido } from './finalizarPedido'
 import { MissingParamError } from '../../../utils/errors'
@@ -14,7 +14,7 @@ export class FinalizarPedidoController implements Controller {
 
     async handle({ clienteId }: FinalizarPedidoUseCaseRequest): Promise<HttpResponse> {
         if (!clienteId) {
-            return fail(new MissingParamError('cliente'))
+            return clientError(new MissingParamError('cliente'))
         }
 
         try {
@@ -24,7 +24,7 @@ export class FinalizarPedidoController implements Controller {
 
             return ok()
         } catch (error: any) {
-            return fail(new Error(error?.message))
+            return clientError(new Error(error?.message))
         }
     }
 }

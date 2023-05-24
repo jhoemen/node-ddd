@@ -16,11 +16,11 @@ export class AdicionarProdutoCarrinhoController implements Controller {
 
     async handle({ clienteId, produto }: AdicionarProdutoCarrinhoUseCaseRequest): Promise<HttpResponse> {
         if (!clienteId) {
-            return fail(new MissingParamError('cliente'))
+            return clientError(new MissingParamError('cliente'))
         }
 
         if (!produto) {
-            return fail(new MissingParamError('produto'))
+            return clientError(new MissingParamError('produto'))
         }
 
         try {
@@ -31,7 +31,7 @@ export class AdicionarProdutoCarrinhoController implements Controller {
 
             return ok()
         } catch (error: any) {
-            return fail(new Error(error?.message))
+            return clientError(new Error(error?.message))
         }
     }
 }

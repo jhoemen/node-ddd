@@ -1,5 +1,5 @@
 import { Controller } from '../../../infra/controller'
-import { HttpResponse, fail, clientError, ok } from '../../../infra/httpResponse'
+import { HttpResponse, clientError, ok } from '../../../infra/httpResponse'
 
 import { RemoverProdutoCarrinho } from './removerProdutoCarrinho'
 import { MissingParamError } from '../../../utils/errors'
@@ -15,11 +15,11 @@ export class RemoverProdutoCarrinhoController implements Controller {
 
     async handle({ clienteId, produtoId }: RemoverProdutoCarrinhoUseCaseRequest): Promise<HttpResponse> {
         if (!clienteId) {
-            return fail(new MissingParamError('cliente'))
+            return clientError(new MissingParamError('cliente'))
         }
 
         if (!produtoId) {
-            return fail(new MissingParamError('produto'))
+            return clientError(new MissingParamError('produto'))
         }
 
         try {
@@ -30,7 +30,7 @@ export class RemoverProdutoCarrinhoController implements Controller {
 
             return ok()
         } catch (error: any) {
-            return fail(new Error(error?.message))
+            return clientError(new Error(error?.message))
         }
     }
 }
