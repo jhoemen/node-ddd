@@ -1,6 +1,6 @@
-import { InMemoryClienteRepository } from '../../../test/repositories/in-memory/inMemoryclienteRepository'
-import { InMemoryPedidoRepository } from '../../../test/repositories/in-memory/inMemoryPedidoRepository'
-import { InMemoryProdutoRepository } from '../../../test/repositories/in-memory/inMemoryProdutoRepository'
+import { InMemoryClienteRepository } from '../../infra/repositories/in-memory/inMemoryclienteRepository'
+import { InMemoryPedidoRepository } from '../../infra/repositories/in-memory/inMemoryPedidoRepository'
+import { InMemoryProdutoRepository } from '../../infra/repositories/in-memory/inMemoryProdutoRepository'
 
 export = new (class inMemoryRepository {
     inMemoryClienteRepository = new InMemoryClienteRepository()

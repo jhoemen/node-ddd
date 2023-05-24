@@ -1,14 +1,14 @@
-import { ClienteRepository } from "../../../src/application/repositories/clienteRepository"
-import { UniqueEntityID } from "../../../src/core/entities/unique-entity-id"
-import { Cliente } from "../../../src/domain/entities/cliente"
+import { ClienteRepository } from '../../../application/repositories/clienteRepository'
+import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
+import { Cliente } from '../../../domain/entities/cliente'
 
-export class InMemoryClienteRepository implements ClienteRepository {    
+export class InMemoryClienteRepository implements ClienteRepository {
     public items: Cliente[] = []
 
     async findByCpf(cpf: string): Promise<Cliente | null> {
         const cliente = this.items.find((cliente) => cliente.cpf === cpf)
 
-        if(!cliente) {
+        if (!cliente) {
             return null
         }
 
@@ -18,7 +18,7 @@ export class InMemoryClienteRepository implements ClienteRepository {
     async findByEmail(email: string): Promise<Cliente | null> {
         const cliente = this.items.find((cliente) => cliente.email === email)
 
-        if(!cliente) {
+        if (!cliente) {
             return null
         }
 
@@ -28,7 +28,7 @@ export class InMemoryClienteRepository implements ClienteRepository {
     async findById(id: UniqueEntityID): Promise<Cliente | null> {
         const cliente = this.items.find((cliente) => cliente.id.toString() === id.toString())
 
-        if(!cliente) {
+        if (!cliente) {
             return null
         }
 

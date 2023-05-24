@@ -1,14 +1,12 @@
-import { ProdutoRepository } from '../../../src/application/repositories/produtoRepository'
-import { UniqueEntityID } from '../../../src/core/entities/unique-entity-id'
-import { Produto } from '../../../src/domain/entities/produto'
+import { ProdutoRepository } from '../../../application/repositories/produtoRepository'
+import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
+import { Produto } from '../../../domain/entities/produto'
 
 export class InMemoryProdutoRepository implements ProdutoRepository {
     public items: Produto[] = []
 
     public constructor() {
-        var idProduto = new UniqueEntityID(
-            '767fe3f2-9983-48ab-a20d-4de74175db25'
-        )
+        var idProduto = new UniqueEntityID('767fe3f2-9983-48ab-a20d-4de74175db25')
 
         var produto = new Produto(
             {
@@ -22,9 +20,7 @@ export class InMemoryProdutoRepository implements ProdutoRepository {
 
         this.items.push(produto)
 
-        var idProduto = new UniqueEntityID(
-            'c8ed6c49-910c-46e9-9b25-2c14f18338d9'
-        )
+        var idProduto = new UniqueEntityID('c8ed6c49-910c-46e9-9b25-2c14f18338d9')
 
         var produto = new Produto(
             {
@@ -40,9 +36,7 @@ export class InMemoryProdutoRepository implements ProdutoRepository {
     }
 
     async findById(id: UniqueEntityID): Promise<Produto | null> {
-        const produto = this.items.find(
-            (produto) => produto.id.toString() === id.toString()
-        )
+        const produto = this.items.find((produto) => produto.id.toString() === id.toString())
 
         if (!produto) {
             return null

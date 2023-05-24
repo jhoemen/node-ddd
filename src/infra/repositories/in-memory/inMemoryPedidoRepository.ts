@@ -1,7 +1,7 @@
-import { PedidoRepository } from '../../../src/application/repositories/pedidoRepository'
-import { UniqueEntityID } from '../../../src/core/entities/unique-entity-id'
-import { Pedido } from '../../../src/domain/entities/pedido'
-import { Produto } from '../../../src/domain/entities/produto'
+import { Pedido } from '../../../domain/entities/pedido'
+import { PedidoRepository } from '../../../application/repositories/pedidoRepository'
+import { Produto } from '../../../domain/entities/produto'
+import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
 
 export class InMemoryPedidoRepository implements PedidoRepository {
     public items: Pedido[] = []
