@@ -3,7 +3,7 @@ import { HttpResponse, fail, clientError, ok } from '../../../infra/httpResponse
 
 import { LimparCarrinho } from './limparCarrinho'
 import { MissingParamError } from '../../../utils/errors'
-import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
+import { UniqueEntityID } from '../../../utils/helpers/unique-entity-id'
 
 type LimparCarrinhoUseCaseRequest = {
     clienteId: UniqueEntityID

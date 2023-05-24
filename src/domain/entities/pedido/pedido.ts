@@ -1,5 +1,5 @@
 import { Entity } from '../../entity'
-import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
+import { UniqueEntityID } from '../../../utils/helpers/unique-entity-id'
 import { Produto } from '../produto/produto'
 
 export interface PedidoProps {

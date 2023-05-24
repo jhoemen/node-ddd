@@ -1,4 +1,4 @@
-import { UniqueEntityID } from '../../core/entities/unique-entity-id'
+import { UniqueEntityID } from '../../utils/helpers/unique-entity-id'
 import { Cliente } from '../entities/cliente/cliente'
 
 export interface ClienteRepository {

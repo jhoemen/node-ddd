@@ -1,14 +1,9 @@
 import { Controller } from '../../../infra/controller'
-import {
-    HttpResponse,
-    fail,
-    clientError,
-    ok,
-} from '../../../infra/httpResponse'
+import { HttpResponse, fail, clientError, ok } from '../../../infra/httpResponse'
 
 import { RemoverProdutoCarrinho } from './removerProdutoCarrinho'
 import { MissingParamError } from '../../../utils/errors'
-import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
+import { UniqueEntityID } from '../../../utils/helpers/unique-entity-id'
 
 type RemoverProdutoCarrinhoUseCaseRequest = {
     clienteId: UniqueEntityID
@@ -18,10 +13,7 @@ type RemoverProdutoCarrinhoUseCaseRequest = {
 export class RemoverProdutoCarrinhoController implements Controller {
     constructor(private removerProdutoCarrinho: RemoverProdutoCarrinho) {}
 
-    async handle({
-        clienteId,
-        produtoId,
-    }: RemoverProdutoCarrinhoUseCaseRequest): Promise<HttpResponse> {
+    async handle({ clienteId, produtoId }: RemoverProdutoCarrinhoUseCaseRequest): Promise<HttpResponse> {
         if (!clienteId) {
             return fail(new MissingParamError('cliente'))
         }

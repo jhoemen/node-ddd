@@ -4,7 +4,7 @@ import { HttpResponse, fail, clientError, ok } from '../../../infra/httpResponse
 import { AdicionarProdutoCarrinho } from './adicionarProdutoCarrinho'
 import { MissingParamError, InvalidParamError } from '../../../utils/errors'
 import { Produto } from '../../../domain/entities/produto/produto'
-import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
+import { UniqueEntityID } from '../../../utils/helpers/unique-entity-id'
 
 type AdicionarProdutoCarrinhoUseCaseRequest = {
     clienteId: UniqueEntityID

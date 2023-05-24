@@ -1,4 +1,4 @@
-import { UniqueEntityID } from '../../core/entities/unique-entity-id'
+import { UniqueEntityID } from '../../utils/helpers/unique-entity-id'
 import { Pedido } from '../entities/pedido/pedido'
 import { Produto } from '../entities/produto/produto'
 

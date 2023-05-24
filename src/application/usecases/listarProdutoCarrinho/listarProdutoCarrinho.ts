@@ -1,6 +1,6 @@
 import { PedidoRepository } from '../../../domain/repositories/pedidoRepository'
 import { Pedido } from '../../../domain/entities/pedido/pedido'
-import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
+import { UniqueEntityID } from '../../../utils/helpers/unique-entity-id'
 import { ClienteRepository } from '../../../domain/repositories/clienteRepository'
 
 interface ListarProdutoCarrinhoUseCaseRequest {

@@ -1,5 +1,5 @@
 import { ClienteRepository } from '../../../domain/repositories/clienteRepository'
-import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
+import { UniqueEntityID } from '../../../utils/helpers/unique-entity-id'
 import { Cliente } from '../../../domain/entities/cliente/cliente'
 
 export class InMemoryClienteRepository implements ClienteRepository {

@@ -1,5 +1,5 @@
 import { ProdutoRepository } from '../../../domain/repositories/produtoRepository'
-import { UniqueEntityID } from '../../../core/entities/unique-entity-id'
+import { UniqueEntityID } from '../../../utils/helpers/unique-entity-id'
 import { Produto } from '../../../domain/entities/produto/produto'
 
 export class InMemoryProdutoRepository implements ProdutoRepository {
