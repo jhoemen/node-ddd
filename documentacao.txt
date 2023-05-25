@@ -1,0 +1,45 @@
+11. Documentar: Documente a arquitetura da aplicação, explicando as camadas e suas responsabilidades, como as classes se comunicam e como as regras de negócio são aplicadas.
+
+A arquitetura dividida em camada de aplicação, domínio e infra.
+
+Infra, responsável pelo armazenamento e acesso os dados, podendo ser um banco de dados, arquivo ou in-memory. 
+
+Na pasta repositories temos as classes de repository cliente, pedido e produto que implementam as interfaces do repositório da camada de domínio.
+
+Na pasta http temos a API, que está organizada em pastas:
+- Adapters, responsável por adaptar o retorno das controllers para a rota retornar via response para o solicitante da API;
+- Config, responsável pela configuração do EXPRESS, que irá gerenciar as rotas, cors e parse;
+- Factories, é uma fábrica responsável por criar instancias de objetos das classes usecase e controller da camada de aplicação;
+- Middlewares, renponsável por proteger as rotas, verifica e valida o token JWT informado no header da requisição;
+- routes, responsável por configurar as rotas que irão acessar a camada de aplicação.
+
+A API é responsável por, disponibilizar rotas de acessos para a camada de aplicação, algumas rotas são protegidas por uma classe de middleware, que após validação chama a fábrica, que é responsável por instanciar objetos das classes de usecase e controller da camada de aplicação, enviando para a mesma o repository a ser utlizado.
+
+Domain, camada responsável pelo modelo do domínio, possui as pastas, entitites que contém as classes das entidades do negócio, e a pasta repositories, com as interfaces de acesso da entidade, que são implementados pela camada de infra.
+
+
+Application, camada responsável pelas regras de negócios da aplicação e pela comunição entre as camadas domain e infra, as classes de usecase e controller tem a responsabilidade de validar, tratar, e aplicar regras de negócios que atendam o domínio. Tem a finalidade de prover os serviços que acessam as classes das entidades da camada de domain e as classes dos repositórios na camada de infra.
+
+
+
+Fluxo:
+Uma solicitação, REQUEST é disparado via API para o sistema de rotas do EXPRESS, após localização da rota, pode ser solicitado ou não a classe de MIDDLEWARE, que protege a rota, exigindo que um token JWT seja informado no HEADER da REQUEST, caso atenda as regras do MIDDLEWARE, a FACTORY é chamada para fabricar os USECASE, CONTROLLER e REPOSITORY que serão utilizados na CAMADA DE APLICAÇÃO, seu papel é fazer uma ponte de comunicação entre as CAMADAS. Recebe os dados de uma REQUEST, valida os dados e as regras de negócios, envia para o USECASE que acessa a ENTITTY e faz uma chamada ao REPOSITORY. O repositório retorna um objeto para o USECASE, que envia para a CONTROLLER, onde a mesma devolve para a FACTORY, que envia para o ADAPTER, que é responsável por tratar os dados que serão retornados no corpo da RESPONSE.
+
+
+
+
+
+
+
+
+
+
+
+
+
+===========================================================EXCLUIR===========================================================
+A camada de aplicação, recebe os dados da requisição da rota, valida as informações aplicando as regras de negócios e posteriormente, enviar os dados tratados e validados para o usecase, que é o serviço responsável por fazer a comunicação com o repository. Após a comunicação, retorna os dados para a controller que retorna para a factory, que repassa os dados para a rota, e através da classe ADAPTER, exibe para o solicitante da rota um reponse com os dados.
+
+
+Na pasta http temos a API, que disponibiliza rotas de acessos para os usecase da camada de aplicação, algumas rotas são protegidas por uma classe de middleware, responsável por verificar a existencia e validade de um token JWT no header das requisições solicitas. Foi utilizado o design pattern FACTORY, para criar fábricas de acesso as controllers da camada de aplicação. A fábrica é responsável por instanciar objeto de usecase e controller da camada de aplicação, passando para a mesma o repository a ser utlizado pela camada de aplicação, os controller da camada de aplicação, recebe os dados da requisição da rota, valida as informações aplicando as regras de negócios e posteriormente, enviar os dados tratados e validados para o usecase, que é o serviço responsável por persistir os dados no repository. Após a persistência é retornado os dados para a controller que retorna para a factory, que repassa os dados para a rota, e através da classe ADAPTER, exibe para o solicitante da rota um reponse com os dados.
+
