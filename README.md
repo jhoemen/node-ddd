@@ -1,6 +1,16 @@
-# Arquitetura dividida em camadas, aplicação, domínio e infra.
+# Arquitetura dividida em camadas, domínio, aplicação e infra.
 
-## Infra, responsável pelo armazenamento e acesso os dados, podendo ser um banco de dados, arquivo ou in-memory.
+# Domain
+
+## Camada responsável pelo modelo do domínio, possui as pastas, entitites que contém as classes das entidades do negócio, e a pasta repositories, com as interfaces de acesso da entidade, que são implementados pela camada de infra.
+
+# Application
+
+## Camada responsável pelas regras de negócios da aplicação e pela comunição entre as camadas domain e infra, as classes de usecase e controller tem a responsabilidade de validar, tratar, e aplicar regras de negócios que atendam o domínio. Tem a finalidade de prover os serviços que acessam as classes das entidades da camada de domain e as classes dos repositórios na camada de infra.
+
+# Infra
+
+## Camada responsável pelo armazenamento e acesso os dados, podendo ser um banco de dados, arquivo ou in-memory.
 
 Na pasta repositories temos as classes de repository cliente, pedido e produto que implementam as interfaces do repositório da camada de domínio.
 
@@ -13,10 +23,6 @@ Na pasta http temos a API, que está organizada em pastas:
 -   routes, responsável por configurar as rotas que irão acessar a camada de aplicação.
 
 A API é responsável por, disponibilizar rotas de acessos para a camada de aplicação, algumas rotas são protegidas por uma classe de middleware, que após validação chama a fábrica, que é responsável por instanciar objetos das classes de usecase e controller da camada de aplicação, enviando para a mesma o repository a ser utlizado.
-
-## Domain, camada responsável pelo modelo do domínio, possui as pastas, entitites que contém as classes das entidades do negócio, e a pasta repositories, com as interfaces de acesso da entidade, que são implementados pela camada de infra.
-
-## Application, camada responsável pelas regras de negócios da aplicação e pela comunição entre as camadas domain e infra, as classes de usecase e controller tem a responsabilidade de validar, tratar, e aplicar regras de negócios que atendam o domínio. Tem a finalidade de prover os serviços que acessam as classes das entidades da camada de domain e as classes dos repositórios na camada de infra.
 
 # Fluxo:
 
