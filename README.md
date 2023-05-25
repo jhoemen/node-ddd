@@ -2,15 +2,15 @@
 
 # Domain
 
-## Camada responsável pelo modelo do domínio, possui as pastas, entitites que contém as classes das entidades do negócio, e a pasta repositories, com as interfaces de acesso da entidade, que são implementados pela camada de infra.
+Camada responsável pelo modelo do domínio, possui as pastas, entitites que contém as classes das entidades do negócio, e a pasta repositories, com as interfaces de acesso da entidade, que são implementados pela camada de infra.
 
 # Application
 
-## Camada responsável pelas regras de negócios da aplicação e pela comunição entre as camadas domain e infra, as classes de usecase e controller tem a responsabilidade de validar, tratar, e aplicar regras de negócios que atendam o domínio. Tem a finalidade de prover os serviços que acessam as classes das entidades da camada de domain e as classes dos repositórios na camada de infra.
+Camada responsável pelas regras de negócios da aplicação e pela comunição entre as camadas domain e infra, as classes de usecase e controller tem a responsabilidade de validar, tratar, e aplicar regras de negócios que atendam o domínio. Tem a finalidade de prover os serviços que acessam as classes das entidades da camada de domain e as classes dos repositórios na camada de infra.
 
 # Infra
 
-## Camada responsável pelo armazenamento e acesso os dados, podendo ser um banco de dados, arquivo ou in-memory.
+Camada responsável pelo armazenamento e acesso os dados, podendo ser um banco de dados, arquivo ou in-memory.
 
 Na pasta repositories temos as classes de repository cliente, pedido e produto que implementam as interfaces do repositório da camada de domínio.
 
@@ -26,4 +26,5 @@ A API é responsável por, disponibilizar rotas de acessos para a camada de apli
 
 # Fluxo:
 
-### Uma solicitação, REQUEST é disparado via API para o sistema de rotas do EXPRESS, após localização da rota, pode ser solicitado ou não a classe de MIDDLEWARE, que protege a rota, exigindo que um token JWT seja informado no HEADER da REQUEST, caso atenda as regras do MIDDLEWARE, a FACTORY é chamada para fabricar os USECASE, CONTROLLER e REPOSITORY que serão utilizados na CAMADA DE APLICAÇÃO, seu papel é fazer uma ponte de comunicação entre as CAMADAS. Recebe os dados de uma REQUEST, valida os dados e as regras de negócios, envia para o USECASE que acessa a ENTITTY e faz uma chamada ao REPOSITORY. O repositório retorna um objeto para o USECASE, que envia para a CONTROLLER, onde a mesma devolve para a FACTORY, que envia para o ADAPTER, que é responsável por tratar os dados que serão retornados no corpo da RESPONSE.
+Uma solicitação, REQUEST é disparado via API para o sistema de rotas do EXPRESS, após localização da rota, pode ser solicitado ou não a classe de MIDDLEWARE, que protege a rota, exigindo que um token JWT seja informado no HEADER da REQUEST, caso atenda as regras do MIDDLEWARE, a FACTORY é chamada para fabricar os USECASE, CONTROLLER e REPOSITORY que serão utilizados na CAMADA DE APLICAÇÃO, seu papel é fazer uma ponte de comunicação entre as CAMADAS.
+Recebe os dados de uma REQUEST, valida os dados e as regras de negócios, envia para o USECASE que acessa a ENTITTY e faz uma chamada ao REPOSITORY. O repositório retorna um objeto para o USECASE, que envia para a CONTROLLER, onde a mesma devolve para a FACTORY, que envia para o ADAPTER, que é responsável por tratar os dados que serão retornados no corpo da RESPONSE.
