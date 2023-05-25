@@ -29,3 +29,5 @@ A API é responsável por, disponibilizar rotas de acessos para a camada de apli
 Uma solicitação, REQUEST é disparado via API para o sistema de rotas do EXPRESS, após localização da rota, pode ser solicitado ou não a classe de MIDDLEWARE, que protege a rota, exigindo que um token JWT seja informado no HEADER da REQUEST, caso atenda as regras do MIDDLEWARE, a FACTORY é chamada para fabricar os USECASE, CONTROLLER e REPOSITORY que serão utilizados na CAMADA DE APLICAÇÃO, seu papel é fazer uma ponte de comunicação entre as CAMADAS.
 
 A CAMADA DE APLICAÇÃO recebe os dados de uma REQUEST, valida os dados e as regras de negócios, envia para o USECASE que acessa a ENTITTY e faz uma chamada ao REPOSITORY. O repositório retorna um objeto para o USECASE, que envia para a CONTROLLER, onde a mesma devolve para a FACTORY, que envia para o ADAPTER, que é responsável por tratar os dados que serão retornados no corpo da RESPONSE.
+
+![Screenshot](fluxo.jpg)
