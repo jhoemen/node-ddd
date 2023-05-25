@@ -1,7 +1,7 @@
 import { Cliente } from '../../../domain/entities/cliente/cliente'
 import { ClienteRepository } from '../../../domain/repositories/clienteRepository'
 import { MissingParamError, InvalidParamError } from '../../../utils/errors'
-import { env } from '../../../main/config/env'
+import { env } from '../../../infra/http/config/env'
 import { EmailValidator } from '../../../utils/helpers/email-validator'
 import { TokenGenerator } from '../../../utils/helpers/token-generator'
 import { Encrypter } from '../../../utils/helpers/encrypter'

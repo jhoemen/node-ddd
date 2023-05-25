@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 import { Request, Response, NextFunction } from 'express'
-import { MissingParamError } from '../../utils/errors'
+import { MissingParamError } from '../../../utils/errors'
 import { env } from '../config/env'
 
 export const middlewareAuthentication = () => {
