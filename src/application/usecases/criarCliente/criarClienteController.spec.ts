@@ -75,8 +75,6 @@ describe('criar cliente', () => {
             password_confirmation: cliente.password_confirmation,
         })
 
-        console.log('response-', response)
-
         expect(response.statusCode).toBe(400)
     })
 })

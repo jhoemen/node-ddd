@@ -1,5 +1,5 @@
 import { Controller } from '../../../infra/controller'
-import { HttpResponse, clientError, ok } from '../../../infra/httpResponse'
+import { HttpResponse, ok, unauthorized } from '../../../infra/httpResponse'
 
 import { LoginCliente } from './loginCliente'
 
@@ -20,7 +20,7 @@ export class LoginClienteController implements Controller {
 
             return ok(result)
         } catch (error: any) {
-            return clientError(new Error(error?.message))
+            return unauthorized(new Error(error?.message))
         }
     }
 }
