@@ -18,11 +18,15 @@ export class LoginClienteController implements Controller {
                 password,
             })
 
-            const adpterResult = {
-                token: result.accessToken,
+            const cliente = {
                 id: result.cliente.id.toString(),
                 nome: result.cliente.props.nome,
                 email: result.cliente.props.email,
+            }
+
+            const adpterResult = {
+                token: result.accessToken,
+                cliente,
             }
 
             return ok(adpterResult)
