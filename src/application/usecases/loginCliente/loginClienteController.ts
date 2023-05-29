@@ -1,4 +1,6 @@
+import jwt from 'jsonwebtoken'
 import { Controller } from '../../../infra/controller'
+import { env } from '../../../infra/http/config/env'
 import { HttpResponse, ok, unauthorized } from '../../../infra/httpResponse'
 
 import { LoginCliente } from './loginCliente'
@@ -24,8 +26,12 @@ export class LoginClienteController implements Controller {
                 email: result.cliente.props.email,
             }
 
+            const decode = await jwt.verify(result.accessToken, env.tokenSecret)
+            const expires_in = decode['exp']
+
             const adpterResult = {
                 token: result.accessToken,
+                expires_in,
                 cliente,
             }
 
