@@ -33,6 +33,20 @@ export class InMemoryProdutoRepository implements ProdutoRepository {
         )
 
         this.items.push(produto)
+
+        var idProduto = new UniqueEntityID('c8ed6c49-910c-46e9-9b25-2c14f18338d9')
+
+        var produto = new Produto(
+            {
+                nome: 'Produto Teste 3',
+                descricao: 'Descrição do produto teste 3',
+                preco: '30.00',
+                imagem: 'https://images.tcdn.com.br/img/img_prod/477608/produto_teste_auaha_100519_3_a54bab0298356a66aa94c7d7b027314b.png',
+            },
+            idProduto
+        )
+
+        this.items.push(produto)
     }
 
     async findById(id: UniqueEntityID): Promise<Produto | null> {
