@@ -18,7 +18,14 @@ export class LoginClienteController implements Controller {
                 password,
             })
 
-            return ok(result)
+            const adpterResult = {
+                token: result.accessToken,
+                id: result.cliente.id.toString(),
+                nome: result.cliente.props.nome,
+                email: result.cliente.props.email,
+            }
+
+            return ok(adpterResult)
         } catch (error: any) {
             return unauthorized(new Error(error?.message))
         }

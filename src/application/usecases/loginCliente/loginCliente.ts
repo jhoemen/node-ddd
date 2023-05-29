@@ -41,7 +41,7 @@ export class LoginCliente {
             const tokenGenerator = new TokenGenerator(env.tokenSecret)
             const accessToken = await tokenGenerator.generate(cliente?.id)
 
-            return accessToken
+            return { accessToken, cliente }
         } else {
             throw new InvalidParamError('Email ou senha')
         }
