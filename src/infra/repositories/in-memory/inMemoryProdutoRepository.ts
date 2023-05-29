@@ -45,6 +45,10 @@ export class InMemoryProdutoRepository implements ProdutoRepository {
         return produto
     }
 
+    async getAll(): Promise<Produto[] | []> {
+        return this.items
+    }
+
     async create(produto: Produto) {
         this.items.push(produto)
     }
