@@ -50,9 +50,9 @@ export class InMemoryPedidoRepository implements PedidoRepository {
 
     async delProductCart(pedidoId: UniqueEntityID, produtoId: UniqueEntityID): Promise<void> {
         const pedidoIndex = this.items.findIndex((pedido) => pedido && pedido.situacao === 'Pendente' && pedido.id === pedidoId)
-        const produtos = this.items[pedidoIndex].produto.filter((produto) => produto && produto.id !== produtoId)
+        const produtoIndex = this.items[pedidoIndex].produto.findIndex((produto) => produto && produto.id === produtoId)
 
-        this.items[pedidoIndex].produto = produtos
+        this.items[pedidoIndex].produto.splice(produtoIndex, 1)
     }
 
     async checkoutCart(pedidoId: UniqueEntityID): Promise<void> {

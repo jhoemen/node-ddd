@@ -34,7 +34,7 @@ export class InMemoryProdutoRepository implements ProdutoRepository {
 
         this.items.push(produto)
 
-        var idProduto = new UniqueEntityID('c8ed6c49-910c-46e9-9b25-2c14f18338d9')
+        var idProduto = new UniqueEntityID('eadbad49-d935-4a26-afcd-5c89019751e9')
 
         var produto = new Produto(
             {
