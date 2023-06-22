@@ -7,6 +7,6 @@ const produtoRouter = express.Router()
 
 const repository = inMemoryRepository
 
-produtoRouter.get('/produto', adaptRoute(listarProdutoControllerFactory(repository.inMemoryProdutoRepository)))
+produtoRouter.get('/produto', adaptRoute(listarProdutoControllerFactory(repository.ProdutoRepository)))
 
 export { produtoRouter }
