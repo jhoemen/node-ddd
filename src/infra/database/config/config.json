@@ -1,0 +1,27 @@
+{
+    "development": {
+        "username": "root",
+        "password": "123",
+        "database": "loja",
+        "host": "localhost",
+        "dialect": "mysql",
+        "define": {
+            "createdAt": "created_at",
+            "updatedAt": "updated_at"
+        }
+    },
+    "test": {
+        "username": "root",
+        "password": "123",
+        "database": "loja",
+        "host": "localhost",
+        "dialect": "mysql"
+    },
+    "production": {
+        "username": "root",
+        "password": "123",
+        "database": "loja",
+        "host": "localhost",
+        "dialect": "mysql"
+    }
+}
