@@ -5,8 +5,6 @@ import { ClienteRepositoryMapper } from './ClienteRepositoryMapper'
 import { Cliente } from '../../../../domain/entities/cliente/cliente'
 
 export class DBClienteRepository implements ClienteRepository {
-    public items: Cliente[] = []
-
     async findByCpf(cpf: string): Promise<Cliente | null> {
         const cliente = await models.clientes.findOne({
             where: { cpf: cpf },

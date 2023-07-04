@@ -5,8 +5,6 @@ import models from '../../database/models'
 import { ProdutoRepositoryMapper } from '../mysql/ProdutoRepositoryMapper'
 
 export class DBProdutoRepository implements ProdutoRepository {
-    public items: Produto[] = []
-
     async findById(id: UniqueEntityID): Promise<Produto | null> {
         const produto = await models.produtos.findOne({
             where: { id: id },
@@ -21,6 +19,7 @@ export class DBProdutoRepository implements ProdutoRepository {
     }
 
     async create(produto: Produto) {
-        return await models.produtos.create(produto)
+        const produtoDto = ProdutoRepositoryMapper.toDatabase(produto)
+        return await models.produtos.create(produtoDto)
     }
 }

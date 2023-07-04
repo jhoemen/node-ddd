@@ -51,12 +51,12 @@ export class CriarClienteController implements Controller {
                 password,
             })
 
-            const adpterResult = {
+            const adapterResult = {
                 id: result.cliente.id.toString(),
                 ...result.cliente.props,
             }
 
-            return ok(adpterResult)
+            return ok(adapterResult)
         } catch (error: any) {
             return clientError(new Error(error?.message))
         }
