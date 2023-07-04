@@ -26,7 +26,7 @@ const Clientes = (sequelize, DataType) => {
                 notEmpty: true,
             },
         },
-        pasword: DataType.STRING,
+        password: DataType.STRING,
         ativo: DataType.BOOLEAN,
     })
 }

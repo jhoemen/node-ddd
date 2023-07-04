@@ -8,8 +8,8 @@ const clienteRouter = express.Router()
 
 const repository = inMemoryRepository
 
-clienteRouter.post('/cliente', adaptRoute(criarClienteControllerFactory(repository.inMemoryClienteRepository)))
+clienteRouter.post('/clientes', adaptRoute(criarClienteControllerFactory(repository.ClienteRepository)))
 
-clienteRouter.post('/login', adaptRoute(loginClienteControllerFactory(repository.inMemoryClienteRepository)))
+clienteRouter.post('/login', adaptRoute(loginClienteControllerFactory(repository.ClienteRepository)))
 
 export { clienteRouter }
