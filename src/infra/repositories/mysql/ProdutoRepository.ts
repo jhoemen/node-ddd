@@ -8,13 +8,11 @@ export class DBProdutoRepository implements ProdutoRepository {
     public items: Produto[] = []
 
     async findById(id: UniqueEntityID): Promise<Produto | null> {
-        const produtos = this.items.find((produto) => produto.id.toString() === id.toString())
+        const produto = await models.produtos.findOne({
+            where: { id: id },
+        })
 
-        if (!produtos) {
-            return null
-        }
-
-        return produtos
+        return ProdutoRepositoryMapper.toEntity(produto)
     }
 
     async getAll(): Promise<Produto[] | []> {
