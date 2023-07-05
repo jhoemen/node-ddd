@@ -22,15 +22,23 @@ export class DBClienteRepository implements ClienteRepository {
             where: { email: email },
         })
 
+        if (!cliente) {
+            return null
+        }
+
         return ClienteRepositoryMapper.toEntity(cliente)
     }
 
     async findById(id: UniqueEntityID): Promise<Cliente | null> {
-        const produto = await models.clientes.findOne({
+        const cliente = await models.clientes.findOne({
             where: { id: id },
         })
 
-        return ClienteRepositoryMapper.toEntity(produto)
+        if (!cliente) {
+            return null
+        }
+
+        return ClienteRepositoryMapper.toEntity(cliente)
     }
 
     async getAll(): Promise<Cliente[] | []> {

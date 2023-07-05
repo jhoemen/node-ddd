@@ -48,6 +48,9 @@ export class InMemoryProdutoRepository implements ProdutoRepository {
 
         this.items.push(produto)
     }
+    update(produto: Produto): Promise<void> {
+        throw new Error('Method not implemented.')
+    }
 
     async findById(id: UniqueEntityID): Promise<Produto | null> {
         const produto = this.items.find((produto) => produto.id.toString() === id.toString())

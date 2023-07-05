@@ -5,4 +5,5 @@ export interface ProdutoRepository {
     findById(id: UniqueEntityID): Promise<Produto | null>
     getAll(): Promise<Produto[] | []>
     create(produto: Produto): Promise<void>
+    update(produto: Produto): Promise<void>
 }

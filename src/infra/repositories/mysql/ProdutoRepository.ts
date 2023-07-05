@@ -5,10 +5,18 @@ import models from '../../database/models'
 import { ProdutoRepositoryMapper } from '../mysql/ProdutoRepositoryMapper'
 
 export class DBProdutoRepository implements ProdutoRepository {
+    async update(produto: Produto): Promise<void> {
+        const produtoDto = ProdutoRepositoryMapper.toDatabase(produto)
+        return await models.produtos.update({ ...produtoDto }, { where: { id: produto.id } })
+    }
     async findById(id: UniqueEntityID): Promise<Produto | null> {
         const produto = await models.produtos.findOne({
             where: { id: id },
         })
+
+        if (!produto) {
+            return null
+        }
 
         return ProdutoRepositoryMapper.toEntity(produto)
     }
