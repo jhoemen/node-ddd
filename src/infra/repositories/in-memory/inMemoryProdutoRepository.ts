@@ -48,6 +48,9 @@ export class InMemoryProdutoRepository implements ProdutoRepository {
 
         this.items.push(produto)
     }
+    delete(id: UniqueEntityID): Promise<null> {
+        throw new Error('Method not implemented.')
+    }
     update(produto: Produto): Promise<void> {
         throw new Error('Method not implemented.')
     }

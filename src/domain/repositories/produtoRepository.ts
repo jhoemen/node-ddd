@@ -6,4 +6,5 @@ export interface ProdutoRepository {
     getAll(): Promise<Produto[] | []>
     create(produto: Produto): Promise<void>
     update(produto: Produto): Promise<void>
+    delete(id: UniqueEntityID): Promise<null>
 }

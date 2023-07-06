@@ -5,6 +5,15 @@ import models from '../../database/models'
 import { ProdutoRepositoryMapper } from '../mysql/ProdutoRepositoryMapper'
 
 export class DBProdutoRepository implements ProdutoRepository {
+    async delete(id: UniqueEntityID): Promise<null> {
+        // return await models.delete(id)
+        return await models.produtos.destroy({
+            where: {
+                id: id,
+            },
+        })
+    }
+
     async update(produto: Produto): Promise<void> {
         const produtoDto = ProdutoRepositoryMapper.toDatabase(produto)
         return await models.produtos.update({ ...produtoDto }, { where: { id: produto.id } })

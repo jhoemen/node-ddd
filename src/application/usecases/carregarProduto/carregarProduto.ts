@@ -15,6 +15,7 @@ export class CarregarProduto {
 
     async execute({ id }: CarregarProdutoUseCaseRequest): Promise<CarregarProdutoUseCaseResponse> {
         const produto = await this.produtoRepository.findById(id)
+
         return {
             produto,
         }
