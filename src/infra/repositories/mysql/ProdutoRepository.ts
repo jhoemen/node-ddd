@@ -6,7 +6,6 @@ import { ProdutoRepositoryMapper } from '../mysql/ProdutoRepositoryMapper'
 
 export class DBProdutoRepository implements ProdutoRepository {
     async delete(id: UniqueEntityID): Promise<null> {
-        // return await models.delete(id)
         return await models.produtos.destroy({
             where: {
                 id: id,

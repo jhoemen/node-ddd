@@ -8,9 +8,9 @@ const ProdutoRepositoryMapper = {
     },
 
     toDatabase(dataValues) {
-        const { nome, descricao, preco, imagem } = dataValues
+        const { id, nome, descricao, preco, imagem } = dataValues
 
-        return { nome, descricao, preco, imagem }
+        return { id: id.value, nome, descricao, preco, imagem }
     },
 }
 
