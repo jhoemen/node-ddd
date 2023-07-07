@@ -1,22 +1,14 @@
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('produtos', {
+        await queryInterface.createTable('situacoes', {
             id: {
                 type: Sequelize.UUID,
                 defaultValue: Sequelize.UUIDV4,
-            },
-            nome: {
-                type: Sequelize.STRING(100),
-                allowNull: false,
+                primaryKey: true,
             },
             descricao: {
-                type: Sequelize.TEXT('long'),
-            },
-            preco: {
-                type: Sequelize.DECIMAL(10, 2),
-            },
-            imagem: {
-                type: Sequelize.STRING,
+                type: Sequelize.STRING(50),
+                allowNull: false,
             },
             createdAt: {
                 type: 'TIMESTAMP',
@@ -39,6 +31,6 @@ module.exports = {
     },
 
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('produtos')
+        await queryInterface.dropTable('situacoes')
     },
 }

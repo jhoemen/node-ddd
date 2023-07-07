@@ -4,22 +4,23 @@ module.exports = {
             id: {
                 type: Sequelize.UUID,
                 defaultValue: Sequelize.UUIDV4,
+                primaryKey: true,
             },
             nome: {
-                type: Sequelize.STRING,
+                type: Sequelize.STRING(100),
                 allowNull: false,
             },
             cpf: {
-                type: Sequelize.STRING,
+                type: Sequelize.STRING(20),
                 allowNull: false,
                 unique: true,
             },
             email: {
-                type: Sequelize.STRING,
+                type: Sequelize.STRING(100),
                 allowNull: false,
             },
             password: {
-                type: Sequelize.STRING,
+                type: Sequelize.STRING(50),
                 allowNull: false,
             },
             createdAt: {

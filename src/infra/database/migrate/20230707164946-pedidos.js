@@ -1,22 +1,29 @@
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('produtos', {
+        await queryInterface.createTable('pedidos', {
             id: {
                 type: Sequelize.UUID,
                 defaultValue: Sequelize.UUIDV4,
+                primaryKey: true,
             },
-            nome: {
-                type: Sequelize.STRING(100),
+            cliente_id: {
+                type: Sequelize.UUID,
+                references: { model: 'clientes', key: 'id' },
                 allowNull: false,
             },
-            descricao: {
-                type: Sequelize.TEXT('long'),
+            situacao_id: {
+                type: Sequelize.UUID,
+                references: { model: 'situacoes', key: 'id' },
+                allowNull: false,
             },
-            preco: {
+            valor_total: {
                 type: Sequelize.DECIMAL(10, 2),
             },
-            imagem: {
-                type: Sequelize.STRING,
+            valor_desconto: {
+                type: Sequelize.DECIMAL(10, 2),
+            },
+            valor_acrescimo: {
+                type: Sequelize.DECIMAL(10, 2),
             },
             createdAt: {
                 type: 'TIMESTAMP',
@@ -39,6 +46,6 @@ module.exports = {
     },
 
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('produtos')
+        await queryInterface.dropTable('pedidos')
     },
 }
